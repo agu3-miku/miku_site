@@ -1145,7 +1145,7 @@
       "coverStrategy": "first",
       "github": {
         "owner": "agu3-miku",
-        "repo": "agu3-miku.github.io",
+        "repo": "miku_site",
         "branch": "main"
       },
       "contact": {
@@ -1170,6 +1170,7 @@
     }[character]));
     const pad2 = (number) => String(number).padStart(2, '0');
     const isJpg = (name) => /\.(jpe?g)$/i.test(name);
+    const isPhoto = (name) => /\.(jpe?g|png)$/i.test(name);
     const fileUrl = (dir, file) => [dir, file]
       .map((part) => part.split('/').map(encodeURIComponent).join('/'))
       .join('/');
@@ -1203,6 +1204,10 @@
       return COLLATOR.compare(a, b);
     }
 
+    function isLocalPreview() {
+      return ['localhost', '127.0.0.1', '::1', '[::1]'].includes(location.hostname);
+    }
+
     function hashString(value) {
       let hash = 2166136261;
       for (let index = 0; index < value.length; index += 1) {
@@ -1212,18 +1217,26 @@
       return hash >>> 0;
     }
 
+    function photoSort(a, b) {
+      if (isJpg(a) !== isJpg(b)) return isJpg(a) ? -1 : 1;
+      return naturalSort(a, b);
+    }
+
     function pickCover(dir, photos) {
       if (!photos.length) return null;
+      // 有 JPG 时优先从 JPG 里选封面，避免一张大 PNG 拖慢首屏。
+      const jpgs = photos.filter(isJpg);
+      const candidates = jpgs.length ? jpgs : photos;
       if (site.coverStrategy === 'hash') {
-        return photos.reduce((best, photo) => {
+        return candidates.reduce((best, photo) => {
           return hashString(dir + '/' + photo) < hashString(dir + '/' + best) ? photo : best;
-        }, photos[0]);
+        }, candidates[0]);
       }
-      return photos[0];
+      return candidates[0];
     }
 
     function makeCollection(dir, photos, index = 0) {
-      const sorted = Array.from(new Set((photos || []).filter(isJpg))).sort(naturalSort);
+      const sorted = Array.from(new Set((photos || []).filter(isPhoto))).sort(photoSort);
       if (!sorted.length) return null;
       return {
         dir,
@@ -1252,7 +1265,7 @@
         if (parts.length !== 2) return;
         const dir = parts[0];
         const file = parts[1];
-        if (!dir || dir.startsWith('.') || !isJpg(file)) return;
+        if (!dir || dir.startsWith('.') || !isPhoto(file)) return;
         if (!groups.has(dir)) groups.set(dir, []);
         groups.get(dir).push(file);
       });
@@ -1260,6 +1273,7 @@
     }
 
     async function loadLocalCollections() {
+      if (!isLocalPreview()) return false;
       try {
         const response = await fetch('__local_collections.json?t=' + Date.now(), { cache: 'no-store' });
         if (!response.ok) return false;
@@ -1284,10 +1298,10 @@
 
       if (isGitHubPages) {
         if (!owner) owner = host.split('.')[0];
-        if (!repo) {
-          const first = segments[0] ? decodeURIComponent(segments[0]) : '';
-          repo = first && !first.includes('.') ? first : owner + '.github.io';
-        }
+        const first = segments[0] ? decodeURIComponent(segments[0]) : '';
+        // 项目站地址是 username.github.io/repo/，优先使用路径里的仓库名。
+        if (first && !first.includes('.')) repo = first;
+        else if (!repo) repo = owner + '.github.io';
       } else if (owner && !repo) {
         repo = owner + '.github.io';
       }
