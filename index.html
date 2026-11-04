@@ -1143,12 +1143,8 @@
       "name": "安玖的小站",
       "nameEn": "ANJIU'S PHOTO JOURNAL",
       "coverStrategy": "first",
-      "github": {
-        "owner": "agu3-miku",
-        "repo": "miku_site",
-        "branch": "main"
-      },
       "contact": {
+        "github": "https://github.com/agu3-miku",
         "wechat": "D2141161717"
       }
     }
@@ -1162,8 +1158,6 @@
     const $ = (selector, root = document) => root.querySelector(selector);
     const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
     const COLLATOR = new Intl.Collator('zh-Hans-CN', { numeric: true, sensitivity: 'base' });
-    const CACHE_KEY = 'anjiu-site-tree-v1';
-    const API = 'https://api.github.com';
 
     const esc = (value = '') => String(value).replace(/[&<>"']/g, (character) => ({
       '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
@@ -1186,7 +1180,6 @@
       name: '安玖的小站',
       nameEn: "ANJIU'S PHOTO JOURNAL",
       coverStrategy: 'first',
-      github: {},
       contact: {}
     }, config.site || {});
 
@@ -1196,8 +1189,7 @@
       lightbox: null,
       lightboxTrigger: null,
       lastTrigger: null,
-      homeScroll: 0,
-      github: { owner: '', repo: '', branch: '' }
+      homeScroll: 0
     };
 
     function naturalSort(a, b) {
@@ -1287,127 +1279,31 @@
       }
     }
 
-    function detectRepo() {
-      const config = site.github || {};
-      let owner = String(config.owner || '').trim();
-      let repo = String(config.repo || '').trim();
-      let branch = String(config.branch || '').trim();
-      const host = location.hostname;
-      const segments = location.pathname.split('/').filter(Boolean);
-      const isGitHubPages = /\.github\.io$/i.test(host);
-
-      if (isGitHubPages) {
-        if (!owner) owner = host.split('.')[0];
-        const first = segments[0] ? decodeURIComponent(segments[0]) : '';
-        // 项目站地址是 username.github.io/repo/，优先使用路径里的仓库名。
-        if (first && !first.includes('.')) repo = first;
-        else if (!repo) repo = owner + '.github.io';
-      } else if (owner && !repo) {
-        repo = owner + '.github.io';
-      }
-
-      if (!owner || !repo) return { owner: '', repo: '', branch: '' };
-      return { owner, repo, branch };
-    }
-
-    async function fetchJson(url) {
-      const controller = new AbortController();
-      const timer = window.setTimeout(() => controller.abort(), 10000);
+    async function loadPublishedCollections() {
       try {
-        const response = await fetch(url, {
-          headers: {
-            'Accept': 'application/vnd.github+json',
-            'X-GitHub-Api-Version': '2022-11-28'
-          },
-          cache: 'no-store',
-          signal: controller.signal
-        });
-        if (!response.ok) throw new Error('GitHub API responded with ' + response.status);
-        return await response.json();
-      } finally {
-        window.clearTimeout(timer);
-      }
-    }
-
-    function readTreeCache(owner, repo) {
-      try {
-        const raw = localStorage.getItem(CACHE_KEY + ':' + owner + '/' + repo);
-        if (!raw) return null;
-        const cached = JSON.parse(raw);
-        if (!cached || !Array.isArray(cached.paths)) return null;
-        return cached;
-      } catch (error) {
-        return null;
-      }
-    }
-
-    function writeTreeCache(owner, repo, branch, paths) {
-      try {
-        localStorage.setItem(CACHE_KEY + ':' + owner + '/' + repo, JSON.stringify({
-          branch, paths, savedAt: Date.now()
-        }));
-      } catch (error) {
-        /* Storage can be unavailable in private modes. */
-      }
-    }
-
-    async function loadTree(owner, repo, configuredBranch, force = false) {
-      const cached = readTreeCache(owner, repo);
-      if (!force && cached) {
-        return { paths: cached.paths, branch: cached.branch, stale: false };
-      }
-
-      // 页面加载时仍然向 GitHub 取一次最新目录；缓存只用于首屏加速和请求失败时回退。
-      let branch = configuredBranch || (cached && cached.branch) || '';
-      try {
-        if (!branch) {
-          const info = await fetchJson(API + '/repos/' + encodeURIComponent(owner) + '/' + encodeURIComponent(repo));
-          branch = info.default_branch || 'main';
-        }
-        let tree = await fetchJson(API + '/repos/' + encodeURIComponent(owner) + '/' + encodeURIComponent(repo) + '/git/trees/' + encodeURIComponent(branch) + '?recursive=1');
-        if (!tree || !Array.isArray(tree.tree)) throw new Error('Unexpected tree response');
-        const paths = tree.tree.filter((item) => item.type === 'blob').map((item) => item.path);
-        writeTreeCache(owner, repo, branch, paths);
-        return { paths, branch, stale: false };
-      } catch (error) {
-        if (cached) return { paths: cached.paths, branch: cached.branch, stale: true };
-        throw error;
-      }
-    }
-
-    async function syncFromGitHub() {
-      const repoInfo = detectRepo();
-      state.github = repoInfo;
-      updateContact();
-
-      if (!repoInfo.owner || !repoInfo.repo || !/^https?:$/.test(location.protocol)) return;
-
-      const cached = readTreeCache(repoInfo.owner, repoInfo.repo);
-      if (cached) {
-        const cachedCollections = collectionsFromPaths(cached.paths);
-        if (cachedCollections.length) {
-          state.collections = cachedCollections;
-          renderAll();
-        }
-      }
-
-      try {
-        const result = await loadTree(repoInfo.owner, repoInfo.repo, repoInfo.branch, true);
-        state.github.branch = result.branch || repoInfo.branch;
-        state.collections = collectionsFromPaths(result.paths);
+        const response = await fetch('collections.json?t=' + Date.now(), { cache: 'no-store' });
+        if (!response.ok) return false;
+        const data = await response.json();
+        if (!data || !Array.isArray(data.collections)) return false;
+        state.collections = buildCollections(data.collections);
         renderAll();
+        return true;
       } catch (error) {
-        console.warn('GitHub directory sync failed.', error);
+        return false;
       }
     }
 
     function updateContact() {
-      const owner = state.github.owner || site.github.owner || 'agu3-miku';
+      const contact = site.contact || {};
+      const githubUrl = contact.github || 'https://github.com/agu3-miku';
       const githubLink = $('#contactGithub');
-      if (githubLink) githubLink.href = 'https://github.com/' + encodeURIComponent(owner);
+      if (githubLink) githubLink.href = githubUrl;
       const githubLabel = $('#contactGithubLabel');
-      if (githubLabel) githubLabel.textContent = 'GitHub · @' + owner;
-      const wechat = site.contact && site.contact.wechat;
+      if (githubLabel) {
+        const username = githubUrl.replace(/\/+$/, '').split('/').pop();
+        githubLabel.textContent = 'GitHub · @' + username;
+      }
+      const wechat = contact.wechat;
       const wechatButton = $('#contactWechat');
       const wechatLabel = $('#contactWechatLabel');
       if (wechatButton) wechatButton.hidden = !wechat;
@@ -2036,12 +1932,11 @@
       if (footerYear) footerYear.textContent = String(year);
       if (albumFooterYear) albumFooterYear.textContent = String(year);
 
-      state.github = detectRepo();
       bindEvents();
       renderAll();
 
       const localCollections = await loadLocalCollections();
-      if (!localCollections) await syncFromGitHub();
+      if (!localCollections) await loadPublishedCollections();
       handleRoute();
     }
 
