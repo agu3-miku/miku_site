@@ -1,0 +1,2038 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>安玖的小站 · 摄影手记</title>
+  <meta name="description" content="安玖的小站，一个收藏光与日常的摄影手记。人物、日常、旅途中遇见的光，和一些缓慢的时刻。">
+  <meta name="theme-color" content="#f2f8fb">
+  <meta name="color-scheme" content="light">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="安玖的小站 · 摄影手记">
+  <meta property="og:description" content="把光，留在缓慢的日常里。">
+  <meta property="og:image" content="">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%23dcecf5'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-size='30' font-family='Songti SC, STSong, serif' fill='%23152c3a'%3E玖%3C/text%3E%3C/svg%3E">
+  <style>
+    /* ---------- foundation ---------- */
+    :root {
+      --paper: #f2f8fb;
+      --paper-soft: #eaf4f9;
+      --paper-deep: #dcecf5;
+      --ink: #152c3a;
+      --ink-soft: #3d5867;
+      --muted: #607a8a;
+      --line: rgba(21, 44, 58, .14);
+      --line-strong: rgba(21, 44, 58, .28);
+      --blue: #8ac6e1;
+      --blue-deep: #3e86a9;
+      --blue-pale: #cfe7f3;
+      --white: #fbfdfe;
+      --serif: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", "Songti SC", "STSong", "Noto Serif SC", serif;
+      --sans: "Avenir Next", "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      --mono: "SFMono-Regular", "Cascadia Mono", "Liberation Mono", monospace;
+      --pad: clamp(20px, 4.6vw, 76px);
+      --ease: cubic-bezier(.22, 1, .36, 1);
+      --header-h: 84px;
+    }
+
+    * { box-sizing: border-box; }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 100px;
+      background: var(--paper);
+    }
+    body {
+      margin: 0;
+      min-width: 320px;
+      min-height: 100vh;
+      overflow-x: clip;
+      background:
+        radial-gradient(1200px 700px at 88% 4%, rgba(207, 231, 243, .55), transparent 66%),
+        var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    [hidden] { display: none !important; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; color: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    button { cursor: pointer; }
+    ::selection { color: var(--white); background: var(--blue-deep); }
+    :focus-visible { outline: 2px solid var(--blue-deep); outline-offset: 4px; }
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+    }
+    .skip-link {
+      position: fixed; top: 12px; left: 12px; z-index: 10000;
+      padding: 10px 16px; border-radius: 999px;
+      background: var(--ink); color: var(--white); font-size: 12px;
+      transform: translateY(-160%); transition: transform .2s ease;
+    }
+    .skip-link:focus { transform: none; }
+    .page-noise {
+      position: fixed; inset: 0; z-index: 9000; pointer-events: none;
+      opacity: .045; mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+    }
+    .eyebrow {
+      display: flex; align-items: center; gap: 12px;
+      margin: 0; color: var(--muted);
+      font-size: 9px; font-weight: 600; letter-spacing: .27em;
+      line-height: 1.4; text-transform: uppercase;
+    }
+    .eyebrow-line { display: inline-block; width: 42px; height: 1px; background: currentColor; opacity: .55; }
+    .section-head {
+      position: relative; z-index: 2;
+      display: grid; grid-template-columns: minmax(0, 1fr) minmax(250px, 340px);
+      gap: clamp(24px, 5vw, 80px); align-items: end;
+      padding: 0 var(--pad);
+    }
+    .section-title {
+      margin: 15px 0 0;
+      font-family: var(--serif); font-size: clamp(42px, 4.8vw, 78px);
+      font-weight: 300; line-height: 1.06; letter-spacing: -.025em;
+      text-wrap: balance;
+    }
+    .title-en {
+      display: inline-block; margin-left: 18px;
+      color: var(--muted); font-family: var(--sans); font-size: 9px;
+      font-weight: 500; letter-spacing: .28em; vertical-align: .55em;
+    }
+    .section-aside { display: flex; flex-direction: column; align-items: flex-start; gap: 18px; padding-bottom: 5px; }
+    .section-aside p { max-width: 330px; margin: 0; color: var(--ink-soft); font-size: 12px; line-height: 2; }
+
+    /* ---------- header ---------- */
+    .site-header {
+      position: fixed; inset: 0 0 auto; z-index: 80;
+      display: flex; align-items: center; gap: clamp(22px, 3vw, 52px);
+      height: var(--header-h); padding: 0 var(--pad);
+      border-bottom: 1px solid transparent;
+      transition: height .35s var(--ease), background-color .35s, border-color .35s, backdrop-filter .35s;
+    }
+    .site-header.is-scrolled {
+      height: 70px; border-color: var(--line);
+      background: rgba(242, 248, 251, .84);
+      -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
+    }
+    .brand { display: inline-flex; align-items: center; gap: 11px; flex: none; }
+    .brand-mark {
+      width: 37px; height: 37px; flex: none;
+      display: grid; place-items: center; border-radius: 50%;
+      border: 1px solid rgba(62, 134, 169, .35);
+      background: rgba(220, 236, 245, .62); color: var(--ink);
+      font-family: var(--serif); font-size: 17px; line-height: 1;
+      transition: transform .35s var(--ease), background-color .25s;
+    }
+    .brand:hover .brand-mark { transform: rotate(-9deg); background: var(--blue-pale); }
+    .brand-text { display: flex; flex-direction: column; gap: 1px; }
+    .brand-text strong { font-family: var(--serif); font-size: 17px; font-weight: 500; letter-spacing: .12em; line-height: 1.3; }
+    .brand-text small { color: var(--muted); font-size: 7px; font-weight: 500; letter-spacing: .17em; line-height: 1.4; }
+    .site-nav { display: flex; align-items: center; gap: clamp(20px, 2.7vw, 40px); margin-left: auto; }
+    .site-nav a {
+      position: relative; display: inline-flex; align-items: center; gap: 6px;
+      padding: 10px 0; color: var(--ink-soft);
+      font-size: 11.5px; letter-spacing: .08em; white-space: nowrap;
+      transition: color .2s;
+    }
+    .site-nav a span {
+      color: var(--muted); font-family: var(--mono); font-size: 7.5px;
+      letter-spacing: .02em; opacity: .8;
+    }
+    .site-nav a::after {
+      content: ""; position: absolute; left: 0; right: 100%; bottom: 5px;
+      height: 1px; background: var(--ink); transition: right .3s var(--ease);
+    }
+    .site-nav a:hover { color: var(--ink); }
+    .site-nav a:hover::after { right: 0; }
+    .nav-foot { display: none; }
+    .header-actions { display: flex; align-items: center; gap: 12px; }
+    .header-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 9px 17px; border: 1px solid var(--line-strong); border-radius: 999px;
+      font-size: 10.5px; letter-spacing: .08em;
+      transition: color .25s, background-color .25s, border-color .25s;
+    }
+    .header-link:hover { border-color: var(--ink); background: var(--ink); color: var(--white); }
+    .menu-toggle {
+      display: none; width: 42px; height: 42px; padding: 0;
+      border: 1px solid var(--line); border-radius: 50%; background: transparent;
+      align-items: center; justify-content: center; flex-direction: column; gap: 5px;
+    }
+    .menu-toggle i { display: block; width: 15px; height: 1px; background: var(--ink); transition: transform .3s var(--ease), opacity .2s; }
+    body.nav-open .menu-toggle i:first-child { transform: translateY(3px) rotate(45deg); }
+    body.nav-open .menu-toggle i:nth-child(2) { transform: translateY(-3px) rotate(-45deg); }
+    body.nav-open { overflow: hidden; }
+
+    /* ---------- hero ---------- */
+    .hero {
+      position: relative; min-height: 100svh;
+      display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(340px, .95fr);
+      align-items: center; gap: clamp(28px, 5vw, 86px);
+      padding: 138px var(--pad) 92px;
+      overflow: clip;
+    }
+    .hero::before {
+      content: ""; position: absolute; z-index: 0;
+      width: 46vw; height: 46vw; right: 1vw; top: 10%;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(198, 228, 242, .62), rgba(198, 228, 242, 0) 68%);
+      filter: blur(15px); pointer-events: none;
+    }
+    .hero-copy { position: relative; z-index: 3; max-width: 840px; }
+    .hero-eyebrow { opacity: 0; animation: rise .9s .08s var(--ease) forwards; }
+    .hero h1 {
+      max-width: 840px; margin: clamp(20px, 2.7vw, 34px) 0 0;
+      font-family: var(--serif); font-size: clamp(56px, 6.6vw, 104px);
+      font-weight: 300; line-height: 1.08; letter-spacing: -.035em;
+      opacity: 0; animation: rise 1s .16s var(--ease) forwards;
+    }
+    .hero h1 em { position: relative; display: inline-block; color: var(--blue-deep); font-style: normal; }
+    .hero h1 em::after {
+      content: ""; position: absolute; left: 2%; right: 2%; bottom: .055em;
+      height: .075em; border-radius: 50%; background: var(--blue);
+      opacity: .55; transform: rotate(-1.2deg);
+    }
+    .title-dot { color: var(--blue-deep); }
+    .hero-lede {
+      max-width: 450px; margin: clamp(25px, 3vw, 38px) 0 0 clamp(0px, 6vw, 82px);
+      color: var(--ink-soft); font-size: 13.5px; line-height: 2.05; letter-spacing: .025em;
+      opacity: 0; animation: rise .9s .3s var(--ease) forwards;
+    }
+    .hero-actions {
+      display: flex; align-items: center; gap: clamp(18px, 2.5vw, 30px);
+      margin: clamp(28px, 3.3vw, 42px) 0 0 clamp(0px, 6vw, 82px);
+      opacity: 0; animation: rise .9s .4s var(--ease) forwards;
+    }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 16px;
+      min-height: 47px; padding: 10px 11px 10px 21px;
+      border-radius: 999px; border: 1px solid transparent;
+      font-size: 11.5px; letter-spacing: .1em;
+      transition: background-color .3s, color .3s, border-color .3s, transform .3s var(--ease);
+    }
+    .btn-solid { background: var(--ink); color: var(--white); }
+    .btn-solid:hover { background: var(--blue-deep); transform: translateY(-2px); }
+    .btn-arrow {
+      width: 27px; height: 27px; display: grid; place-items: center;
+      border-radius: 50%; background: rgba(255, 255, 255, .13);
+      font-size: 14px; line-height: 1; transition: transform .3s var(--ease);
+    }
+    .btn-solid:hover .btn-arrow { transform: translateY(2px); }
+    .text-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 0; border-bottom: 1px solid var(--line-strong);
+      font-size: 11px; letter-spacing: .09em;
+      transition: color .2s, border-color .2s;
+    }
+    .text-link span { transition: transform .3s var(--ease); }
+    .text-link:hover { color: var(--blue-deep); border-color: var(--blue-deep); }
+    .text-link:hover span { transform: translate(2px, -2px); }
+    .hero-meta {
+      display: flex; align-items: flex-end; gap: clamp(24px, 3.4vw, 44px);
+      max-width: 520px; margin: clamp(34px, 4vw, 56px) 0 0 clamp(0px, 6vw, 82px);
+      padding-top: 16px; border-top: 1px solid var(--line);
+      opacity: 0; animation: rise .9s .5s var(--ease) forwards;
+    }
+    .hero-meta > div { display: flex; align-items: baseline; gap: 6px; white-space: nowrap; }
+    .hero-meta strong { font-family: var(--serif); font-size: 28px; font-weight: 300; line-height: 1; }
+    .hero-meta span { color: var(--muted); font-size: 9px; letter-spacing: .12em; }
+    .hero-meta .meta-label { margin-left: auto; padding-bottom: 1px; font-family: var(--mono); font-size: 8px; letter-spacing: .15em; }
+    .hero-gallery {
+      position: relative; z-index: 2;
+      height: clamp(470px, 51vw, 690px); min-height: 0;
+      opacity: 0; animation: galleryIn 1.25s .2s var(--ease) forwards;
+    }
+    .hero-orbit {
+      position: absolute; left: 4%; top: 4%; width: 88%; aspect-ratio: 1;
+      border: 1px solid rgba(62, 134, 169, .22); border-radius: 50%;
+      transform: rotate(-21deg) scaleY(.76);
+      pointer-events: none;
+    }
+    .hero-orbit::after {
+      content: ""; position: absolute; width: 7px; height: 7px; border-radius: 50%;
+      right: 8%; top: 13%; background: var(--blue-deep);
+      box-shadow: 0 0 0 6px rgba(62, 134, 169, .08);
+    }
+    .hero-vertical {
+      position: absolute; left: -17px; top: 22%; z-index: 4;
+      color: var(--muted); font-family: var(--mono); font-size: 7px;
+      letter-spacing: .22em; writing-mode: vertical-rl;
+    }
+    .hero-photo {
+      position: absolute; display: block; padding: clamp(6px, .55vw, 9px);
+      background: rgba(251, 253, 254, .96);
+      border: 1px solid rgba(255, 255, 255, .9);
+      box-shadow: 0 26px 70px -30px rgba(24, 60, 80, .42);
+      transform: rotate(var(--r, 0deg));
+      transition: transform .55s var(--ease), box-shadow .55s, filter .35s;
+      animation: floaty var(--float-dur, 9s) ease-in-out var(--float-delay, 0s) infinite;
+    }
+    .hero-photo img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.92) contrast(.98); transition: transform 1s var(--ease); }
+    .hero-photo::after {
+      content: attr(data-title); position: absolute; left: clamp(6px, .55vw, 9px); right: clamp(6px, .55vw, 9px); bottom: clamp(6px, .55vw, 9px);
+      padding: 14px 12px 10px;
+      color: #fff; font-family: var(--serif); font-size: 13px; letter-spacing: .06em;
+      background: linear-gradient(transparent, rgba(12, 35, 49, .6));
+      opacity: 0; transform: translateY(5px);
+      transition: opacity .3s, transform .3s var(--ease);
+      pointer-events: none;
+    }
+    .hero-photo:hover { z-index: 6 !important; filter: saturate(1); box-shadow: 0 34px 80px -28px rgba(24, 60, 80, .52); }
+    .hero-photo:hover::after { opacity: 1; transform: none; }
+    .hero-photo:hover img { transform: scale(1.035); }
+    .hero-photo--main { width: 61%; height: 78%; right: 5%; top: 2%; z-index: 3; --r: 2.2deg; --float-delay: .2s; }
+    .hero-photo--side { width: 41%; height: 47%; left: 0; top: 38%; z-index: 2; --r: -5deg; --float-dur: 11s; }
+    .hero-photo--small { width: 32%; height: 25%; right: 0; bottom: 2%; z-index: 4; --r: 4deg; --float-delay: .7s; --float-dur: 10s; }
+    .hero-photo--main:hover { transform: rotate(0deg) translateY(-6px) scale(1.012); }
+    .hero-photo--side:hover { transform: rotate(-2deg) translateY(-6px) scale(1.012); }
+    .hero-photo--small:hover { transform: rotate(1deg) translateY(-6px) scale(1.012); }
+    .hero-hint {
+      position: absolute; right: 3%; bottom: -38px; z-index: 5;
+      display: flex; align-items: center; gap: 9px;
+      margin: 0; color: var(--muted); font-size: 9px; letter-spacing: .1em;
+    }
+    .hero-hint span { color: var(--blue-deep); font-size: 13px; }
+    .hero-scroll {
+      position: absolute; left: var(--pad); bottom: 30px; z-index: 4;
+      display: flex; align-items: center; gap: 10px;
+      color: var(--muted); font-family: var(--mono); font-size: 7px; letter-spacing: .19em;
+      opacity: 0; animation: fadeIn 1s 1s forwards;
+    }
+    .hero-scroll span { position: relative; display: block; width: 1px; height: 28px; background: var(--line-strong); overflow: hidden; }
+    .hero-scroll span::after { content: ""; position: absolute; inset: 0; background: var(--ink); animation: scrollLine 2.4s ease-in-out infinite; }
+    @keyframes scrollLine { 0% { transform: translateY(-100%); } 55%, 100% { transform: translateY(100%); } }
+    @keyframes floaty { 0%, 100% { translate: 0 0; } 50% { translate: 0 -9px; } }
+    @keyframes rise { from { opacity: 0; transform: translateY(25px); } to { opacity: 1; transform: none; } }
+    @keyframes galleryIn { from { opacity: 0; transform: translateY(30px) scale(.975); } to { opacity: 1; transform: none; } }
+    @keyframes fadeIn { to { opacity: 1; } }
+
+    /* ---------- marquee ---------- */
+    .flow {
+      position: relative; overflow: clip;
+      padding: clamp(78px, 9.5vw, 145px) 0 clamp(70px, 8vw, 108px);
+      border-top: 1px solid var(--line);
+      background: linear-gradient(180deg, var(--paper) 0%, #edf6fa 48%, var(--paper) 100%);
+    }
+    .flow::before {
+      content: ""; position: absolute; inset: 12% auto auto 38%;
+      width: 36vw; height: 36vw; border-radius: 50%;
+      background: rgba(184, 220, 238, .26); filter: blur(55px); pointer-events: none;
+    }
+    .reel-window {
+      position: relative; margin-top: clamp(38px, 4.5vw, 64px);
+      padding: 4px 0 54px; overflow: hidden;
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+      mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+    }
+    .reel-window::before, .reel-window::after {
+      content: ""; position: absolute; top: 0; bottom: 0; z-index: 4; width: 9vw;
+      pointer-events: none;
+    }
+    .reel-window::before { left: 0; background: linear-gradient(90deg, #f0f7fa, rgba(240, 247, 250, 0)); }
+    .reel-window::after { right: 0; background: linear-gradient(-90deg, #f0f7fa, rgba(240, 247, 250, 0)); }
+    .reel-track {
+      display: flex; width: max-content;
+      animation: reelMove var(--reel-duration, 72s) linear infinite;
+      will-change: transform;
+    }
+    .reel-window:hover .reel-track,
+    .reel-window:focus-within .reel-track,
+    .reel-window[data-paused] .reel-track { animation-play-state: paused; }
+    .reel-group { display: flex; align-items: flex-start; gap: clamp(16px, 2vw, 28px); padding-right: clamp(16px, 2vw, 28px); }
+    .reel-card { width: clamp(230px, 23vw, 348px); flex: none; display: block; }
+    .reel-card:nth-child(even) { margin-top: clamp(24px, 4vw, 56px); }
+    .reel-frame {
+      position: relative; display: block; aspect-ratio: 3 / 4; overflow: hidden;
+      background: var(--paper-deep); border: 1px solid rgba(21, 44, 58, .1);
+    }
+    .reel-frame img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.9); transition: transform 1.1s var(--ease), filter .5s; }
+    .reel-card:hover .reel-frame img { transform: scale(1.045); filter: saturate(1); }
+    .reel-no {
+      position: absolute; top: 11px; left: 11px; z-index: 2;
+      display: grid; place-items: center; width: 30px; height: 30px;
+      border-radius: 50%; background: rgba(242, 248, 251, .8); color: var(--ink);
+      font-family: var(--mono); font-size: 8px; letter-spacing: .02em;
+      -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    }
+    .reel-open {
+      position: absolute; left: 0; right: 0; bottom: 0; z-index: 2;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 42px 15px 14px;
+      color: #fff; font-size: 9px; letter-spacing: .12em;
+      background: linear-gradient(transparent, rgba(8, 29, 42, .62));
+      opacity: 0; transform: translateY(6px);
+      transition: opacity .3s, transform .35s var(--ease);
+    }
+    .reel-open b { font-size: 15px; font-weight: 400; }
+    .reel-card:hover .reel-open, .reel-card:focus-visible .reel-open { opacity: 1; transform: none; }
+    .reel-meta { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; margin-top: 12px; }
+    .reel-title { font-family: var(--serif); font-size: 17px; letter-spacing: .04em; line-height: 1.4; transition: color .2s; }
+    .reel-card:hover .reel-title { color: var(--blue-deep); }
+    .reel-count { flex: none; color: var(--muted); font-family: var(--mono); font-size: 8px; letter-spacing: .06em; }
+    .flow-foot {
+      display: flex; align-items: center; justify-content: space-between; gap: 24px;
+      padding: 0 var(--pad); color: var(--muted); font-size: 10px; letter-spacing: .06em;
+    }
+    .flow-foot a { display: inline-flex; align-items: center; gap: 9px; color: var(--ink-soft); border-bottom: 1px solid var(--line); padding-bottom: 3px; }
+    .flow-foot a span { transition: transform .3s var(--ease); }
+    .flow-foot a:hover span { transform: translateX(4px); }
+    .flow-foot-right { display: flex; align-items: center; gap: clamp(18px, 2.5vw, 34px); }
+    .flow-controls { display: flex; align-items: center; flex-wrap: wrap; gap: 14px 18px; }
+    .reel-toggle {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 7px 11px 7px 9px; border: 1px solid var(--line); border-radius: 999px;
+      background: rgba(255, 255, 255, .35); color: var(--ink-soft);
+      font-size: 9px; letter-spacing: .07em;
+      transition: background-color .25s, border-color .25s, color .25s;
+    }
+    .reel-toggle:hover { border-color: var(--line-strong); background: var(--white); color: var(--ink); }
+    .reel-toggle i {
+      display: grid; place-items: center; width: 18px; height: 18px;
+      border-radius: 50%; background: var(--paper-deep); color: var(--ink);
+      font-family: var(--mono); font-size: 7px; font-style: normal; line-height: 1;
+    }
+    @media (prefers-reduced-motion: reduce) { .reel-toggle { display: none; } }
+    @keyframes reelMove { to { transform: translate3d(-50%, 0, 0); } }
+
+    /* ---------- collection index ---------- */
+    .collections { position: relative; padding: clamp(88px, 10vw, 150px) 0 clamp(90px, 10vw, 150px); }
+    .collection-list { margin-top: clamp(40px, 5vw, 68px); padding: 0 var(--pad); border-top: 1px solid var(--line); }
+    .collection-row {
+      position: relative; display: grid;
+      grid-template-columns: 45px minmax(0, 1fr) minmax(130px, 215px) 92px 44px;
+      align-items: center; gap: clamp(16px, 2.4vw, 34px);
+      padding: clamp(20px, 2.6vw, 34px) 10px;
+      border-bottom: 1px solid var(--line);
+      transition: background-color .3s, padding-left .35s var(--ease);
+    }
+    .collection-row:hover { background: rgba(220, 236, 245, .36); padding-left: 20px; }
+    .row-no { color: var(--muted); font-family: var(--mono); font-size: 9px; letter-spacing: .08em; align-self: start; padding-top: 8px; }
+    .row-main { min-width: 0; }
+    .row-title-wrap { display: flex; align-items: baseline; gap: clamp(12px, 1.6vw, 22px); flex-wrap: wrap; }
+    .row-main h3 {
+      margin: 0; font-family: var(--serif); font-size: clamp(29px, 3.1vw, 46px);
+      font-weight: 300; line-height: 1.2; letter-spacing: -.015em;
+      overflow-wrap: anywhere; transition: transform .4s var(--ease), color .25s;
+    }
+    .collection-row:hover .row-main h3 { transform: translateX(5px); color: var(--blue-deep); }
+    .row-thumb { position: relative; display: block; width: 100%; aspect-ratio: 16 / 10; overflow: hidden; background: var(--paper-deep); }
+    .row-thumb img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.82); transition: transform .8s var(--ease), filter .5s; }
+    .collection-row:hover .row-thumb img { transform: scale(1.06); filter: saturate(1); }
+    .row-meta { display: flex; flex-direction: column; gap: 4px; color: var(--ink-soft); font-family: var(--mono); font-size: 9px; letter-spacing: .04em; text-align: right; }
+    .row-meta small { color: var(--muted); font-size: 8px; }
+    .row-arrow {
+      width: 38px; height: 38px; display: grid; place-items: center; justify-self: end;
+      border: 1px solid var(--line); border-radius: 50%;
+      color: var(--ink-soft); font-size: 13px;
+      transition: color .3s, background-color .3s, border-color .3s, transform .4s var(--ease);
+    }
+    .collection-row:hover .row-arrow { transform: rotate(45deg); border-color: var(--ink); background: var(--ink); color: var(--white); }
+    .empty-state {
+      display: grid; place-items: center; text-align: center;
+      margin: 0 var(--pad); padding: clamp(60px, 8vw, 110px) 24px;
+      border: 1px dashed var(--line-strong); background: rgba(255, 255, 255, .3);
+    }
+    .empty-visual {
+      width: 92px; height: 92px; display: grid; place-items: center; margin-bottom: 24px;
+      border: 1px solid rgba(62, 134, 169, .28); border-radius: 50%;
+      color: var(--blue-deep); font-family: var(--serif); font-size: 37px;
+      background: radial-gradient(circle at 35% 30%, #f9fdff, var(--paper-deep));
+    }
+    .empty-state h3 { margin: 0; font-family: var(--serif); font-size: clamp(25px, 3vw, 36px); font-weight: 300; }
+    .empty-state p { max-width: 430px; margin: 12px 0 0; color: var(--muted); font-size: 12px; line-height: 1.9; }
+
+    /* ---------- about ---------- */
+    .about {
+      position: relative; overflow: clip;
+      padding: clamp(82px, 10vw, 148px) var(--pad);
+      background: linear-gradient(135deg, #dcecf5 0%, #eaf5fa 50%, #cfe7f3 100%);
+      border-top: 1px solid rgba(21, 44, 58, .08);
+      border-bottom: 1px solid rgba(21, 44, 58, .08);
+    }
+    .about-watermark {
+      position: absolute; right: -3vw; bottom: -19vw; z-index: 0;
+      color: transparent; font-family: var(--serif); font-size: 44vw; line-height: 1;
+      -webkit-text-stroke: 1px rgba(21, 44, 58, .13);
+      pointer-events: none; user-select: none;
+    }
+    .about-inner {
+      position: relative; z-index: 1;
+      display: grid; grid-template-columns: 168px minmax(0, 1fr);
+      gap: clamp(28px, 5vw, 74px); max-width: 1440px; margin: 0 auto;
+    }
+    .about-kicker { padding-top: 12px; color: var(--muted); font-family: var(--mono); font-size: 8px; letter-spacing: .18em; }
+    .about-main h2 {
+      max-width: 1000px; margin: 0;
+      font-family: var(--serif); font-size: clamp(38px, 5vw, 78px);
+      font-weight: 300; line-height: 1.3; letter-spacing: -.02em;
+    }
+    .about-main h2 span { color: var(--blue-deep); }
+    .about-copy {
+      display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+      gap: clamp(28px, 5vw, 80px);
+      margin-top: clamp(36px, 4.5vw, 60px); padding-top: clamp(24px, 3vw, 38px);
+      border-top: 1px solid rgba(21, 44, 58, .15);
+    }
+    .about-copy p { margin: 0; color: var(--ink-soft); font-size: 12.5px; line-height: 2.15; }
+    .about-copy p + p { margin-top: 16px; }
+    .about-sign { display: flex; align-items: flex-end; justify-content: flex-end; gap: 16px; padding-bottom: 10px; }
+    .about-sign strong { font-family: var(--serif); font-size: clamp(36px, 4vw, 58px); font-weight: 300; line-height: 1; letter-spacing: .1em; }
+    .about-sign span { padding-bottom: 8px; color: var(--muted); font-family: var(--mono); font-size: 8px; letter-spacing: .16em; }
+
+    /* ---------- contact + footer ---------- */
+    .contact {
+      position: relative; overflow: clip;
+      padding: clamp(86px, 11vw, 165px) var(--pad) clamp(60px, 7vw, 100px);
+      background: var(--ink); color: #ecf7fc;
+    }
+    .contact::before {
+      content: ""; position: absolute; right: -8vw; top: -14vw;
+      width: 55vw; height: 55vw; border-radius: 50%;
+      background: radial-gradient(circle, rgba(138, 198, 225, .18), transparent 66%);
+      pointer-events: none;
+    }
+    .contact .eyebrow { color: #97c1d5; }
+    .contact-main {
+      position: relative; z-index: 1;
+      display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(250px, .7fr);
+      align-items: end; gap: clamp(30px, 6vw, 100px);
+      max-width: 1440px; margin: 0 auto;
+    }
+    .contact h2 {
+      margin: 22px 0 0; font-family: var(--serif);
+      font-size: clamp(46px, 7.1vw, 112px); font-weight: 300; line-height: 1.1; letter-spacing: -.025em;
+    }
+    .contact h2 em { color: var(--blue); font-style: normal; }
+    .contact-side { padding-bottom: 10px; }
+    .contact-side p { max-width: 320px; margin: 0 0 30px; color: #a9c5d3; font-size: 12px; line-height: 2; }
+    .contact-links { display: flex; flex-wrap: wrap; gap: 12px; }
+    .contact-link {
+      display: inline-flex; align-items: center; justify-content: space-between; gap: 24px;
+      min-width: 180px; padding: 14px 18px;
+      border: 1px solid rgba(236, 247, 252, .25); border-radius: 999px;
+      background: transparent; color: #ecf7fc;
+      font-size: 10.5px; letter-spacing: .08em; text-align: left;
+      transition: color .3s, background-color .3s, border-color .3s, transform .3s var(--ease);
+    }
+    .contact-link span { font-size: 14px; }
+    .contact-link .copy-note { font-size: 8px; letter-spacing: .04em; opacity: .62; }
+    .contact-link:hover { transform: translateY(-3px); border-color: var(--blue); background: var(--blue); color: var(--ink); }
+    .contact-link:hover .copy-note { opacity: .85; }
+    .contact-foot {
+      position: relative; z-index: 1; max-width: 1440px; margin: clamp(70px, 9vw, 130px) auto 0;
+      padding-top: 24px; border-top: 1px solid rgba(236, 247, 252, .16);
+      display: flex; align-items: center; justify-content: space-between; gap: 20px;
+      color: #7e9ead; font-size: 9px; letter-spacing: .05em;
+    }
+    .contact-foot span:last-child { font-family: var(--mono); font-size: 8px; letter-spacing: .1em; }
+    .site-footer {
+      background: var(--ink); color: #ecf7fc; padding: 0 var(--pad) 28px;
+    }
+    .footer-inner {
+      max-width: 1440px; margin: 0 auto; padding-top: 36px;
+      border-top: 1px solid rgba(236, 247, 252, .1);
+      display: grid; grid-template-columns: 1fr auto auto; align-items: end; gap: clamp(28px, 4vw, 60px);
+    }
+    .footer-brand strong { display: block; font-family: var(--serif); font-size: 22px; font-weight: 400; letter-spacing: .1em; }
+    .footer-brand span { display: block; margin-top: 4px; color: #7e9ead; font-size: 8px; letter-spacing: .15em; }
+    .footer-nav { display: flex; gap: 24px; }
+    .footer-nav a { color: #a9c5d3; font-size: 10px; letter-spacing: .08em; transition: color .2s; }
+    .footer-nav a:hover { color: var(--blue); }
+    .footer-copy { color: #6d8d9c; font-family: var(--mono); font-size: 8px; letter-spacing: .05em; text-align: right; line-height: 1.9; }
+
+    /* ---------- album view ---------- */
+    body[data-view="album"] .site-header { display: none; }
+    .album-view { min-height: 100vh; background: var(--paper); }
+    .album-topbar {
+      position: sticky; top: 0; z-index: 70;
+      display: flex; align-items: center; justify-content: space-between; gap: 20px;
+      min-height: 68px; padding: 0 var(--pad);
+      border-bottom: 1px solid var(--line);
+      background: rgba(242, 248, 251, .9);
+      -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
+    }
+    .album-back, .album-copy {
+      display: inline-flex; align-items: center; gap: 9px;
+      padding: 8px 0; color: var(--ink-soft); background: transparent; border: 0;
+      font-size: 10px; letter-spacing: .07em;
+    }
+    .album-back span { font-size: 15px; transition: transform .3s var(--ease); }
+    .album-back:hover span { transform: translateX(-4px); }
+    .album-brand { position: absolute; left: 50%; transform: translateX(-50%); text-align: center; font-family: var(--serif); font-size: 15px; letter-spacing: .12em; }
+    .album-brand small { display: block; margin-top: 1px; color: var(--muted); font-family: var(--sans); font-size: 6.5px; letter-spacing: .2em; }
+    .album-copy { border-bottom: 1px solid transparent; transition: color .2s, border-color .2s; }
+    .album-copy:hover { color: var(--blue-deep); border-color: var(--blue-deep); }
+    .album-head {
+      display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(250px, .75fr);
+      align-items: end; gap: clamp(30px, 6vw, 100px);
+      max-width: 1600px; margin: 0 auto;
+      padding: clamp(58px, 8vw, 108px) var(--pad) clamp(34px, 4.5vw, 58px);
+    }
+    .album-kicker {
+      display: flex; align-items: center; gap: 20px;
+      color: var(--muted); font-family: var(--mono); font-size: 8px; letter-spacing: .15em;
+    }
+    .album-head h1 {
+      margin: 20px 0 0; font-family: var(--serif);
+      font-size: clamp(62px, 10vw, 152px); font-weight: 300; line-height: .98; letter-spacing: -.04em;
+      text-wrap: balance; overflow-wrap: anywhere;
+    }
+    .album-head h1:focus { outline: none; }
+    .album-head-row { display: flex; align-items: center; flex-wrap: wrap; gap: 16px; margin-top: 19px; }
+    .album-count { margin: 0; color: var(--muted); font-family: var(--mono); font-size: 8px; letter-spacing: .07em; }
+    .album-note { margin: 0 0 13px; padding-left: 20px; border-left: 1px solid var(--line-strong); color: var(--ink-soft); font-size: 12px; line-height: 2.1; }
+    .album-cover {
+      max-width: 1600px; margin: 0 auto; padding: 0 var(--pad);
+    }
+    .album-cover-btn {
+      position: relative; display: block; width: 100%; padding: 0; overflow: hidden;
+      border: 0; background: var(--paper-deep); cursor: zoom-in;
+      aspect-ratio: 16 / 8.6; max-height: 74vh;
+    }
+    .album-cover-btn img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.5s var(--ease), filter .5s; }
+    .album-cover-btn:hover img { transform: scale(1.018); filter: saturate(1.03); }
+    .album-cover-tag {
+      position: absolute; right: 14px; bottom: 13px;
+      padding: 7px 10px; background: rgba(242, 248, 251, .8);
+      color: var(--ink); font-family: var(--mono); font-size: 7.5px; letter-spacing: .1em;
+      -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    }
+    .album-gallery-head {
+      display: flex; align-items: center; justify-content: space-between; gap: 24px;
+      max-width: 1600px; margin: 0 auto;
+      padding: clamp(36px, 4.6vw, 62px) var(--pad) clamp(19px, 2.5vw, 30px);
+      color: var(--muted); font-family: var(--mono); font-size: 8px; letter-spacing: .13em;
+    }
+    .album-gallery-head span:last-child { font-family: var(--sans); letter-spacing: .08em; }
+    .album-grid {
+      columns: 2; column-gap: clamp(15px, 2vw, 28px);
+      max-width: 1600px; margin: 0 auto; padding: 0 var(--pad);
+    }
+    .album-grid.is-justified { columns: auto; column-gap: normal; position: relative; }
+    .album-grid.is-justified .album-item { position: absolute; margin: 0; }
+    .album-item { break-inside: avoid; margin: 0 0 clamp(19px, 2.5vw, 36px); }
+    .album-photo {
+      position: relative; display: block; width: 100%; padding: 0; overflow: hidden;
+      border: 0; background: var(--paper-deep); cursor: zoom-in;
+      text-align: left;
+    }
+    .album-photo img { width: 100%; height: auto; transition: transform 1s var(--ease), filter .4s; }
+    .album-photo:hover img { transform: scale(1.012); filter: saturate(1.02); }
+    .album-photo::after {
+      content: "查看大图 ↗"; position: absolute; right: 12px; bottom: 12px;
+      padding: 6px 9px; color: var(--ink); background: rgba(242, 248, 251, .82);
+      font-size: 8px; letter-spacing: .1em;
+      opacity: 0; transform: translateY(4px);
+      transition: opacity .25s, transform .3s var(--ease);
+    }
+    .album-photo:hover::after { opacity: 1; transform: none; }
+    .album-item figcaption {
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      padding: 9px 1px 0;
+      color: var(--muted); font-family: var(--mono); font-size: 8px; letter-spacing: .05em;
+    }
+    .album-item figcaption span:last-child { font-family: var(--sans); letter-spacing: .06em; }
+    .album-end {
+      max-width: 1200px; margin: clamp(58px, 7vw, 100px) auto 0;
+      padding: clamp(30px, 4vw, 52px) var(--pad) clamp(75px, 9vw, 130px);
+      border-top: 1px solid var(--line);
+    }
+    .album-end-link {
+      display: flex; align-items: center; justify-content: space-between; gap: 24px;
+      padding: 14px 0 16px; border-bottom: 1px solid var(--line);
+    }
+    .album-end-link strong {
+      font-family: var(--serif); font-size: clamp(33px, 4.8vw, 67px);
+      font-weight: 300; line-height: 1.2; transition: color .25s, transform .4s var(--ease);
+    }
+    .album-end-link:hover strong { color: var(--blue-deep); transform: translateX(7px); }
+    .album-end-arrow {
+      width: 48px; height: 48px; flex: none; display: grid; place-items: center;
+      border: 1px solid var(--line-strong); border-radius: 50%;
+      transition: background-color .3s, color .3s, transform .4s var(--ease);
+    }
+    .album-end-link:hover .album-end-arrow { transform: rotate(45deg); background: var(--ink); color: var(--white); }
+    .album-back-home { display: inline-block; margin-top: 25px; color: var(--muted); font-size: 10px; letter-spacing: .08em; border-bottom: 1px solid var(--line); }
+    .album-footer {
+      display: flex; align-items: center; justify-content: space-between; gap: 20px;
+      padding: 22px var(--pad) 30px; border-top: 1px solid var(--line);
+      color: var(--muted); font-family: var(--mono); font-size: 8px; letter-spacing: .06em;
+    }
+
+    /* ---------- lightbox ---------- */
+    .lightbox {
+      width: 100vw; max-width: none; height: 100dvh; max-height: none;
+      margin: 0; padding: 0; border: 0;
+      background: #071c28; color: #eef8fc;
+      overflow: hidden;
+    }
+    .lightbox::backdrop { background: rgba(4, 16, 23, .76); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+    .lightbox[open] { display: flex; flex-direction: column; animation: lbIn .28s ease; }
+    @keyframes lbIn { from { opacity: 0; } }
+    .lb-bar {
+      display: flex; align-items: center; gap: 24px;
+      min-height: 62px; padding: 0 clamp(18px, 3vw, 34px);
+      border-bottom: 1px solid rgba(238, 248, 252, .12);
+    }
+    .lb-counter { color: var(--blue); font-family: var(--mono); font-size: 9px; letter-spacing: .08em; }
+    .lb-title { font-family: var(--serif); font-size: 15px; letter-spacing: .08em; }
+    .lb-close {
+      width: 38px; height: 38px; margin-left: auto; padding: 0;
+      border: 1px solid rgba(238, 248, 252, .2); border-radius: 50%;
+      background: transparent; color: #eef8fc; font-size: 21px; line-height: 1;
+      transition: background-color .25s, color .25s, transform .3s;
+    }
+    .lb-close:hover { background: var(--blue); color: var(--ink); transform: rotate(90deg); }
+    .lb-main {
+      flex: 1; min-height: 0;
+      display: grid; grid-template-columns: 80px minmax(0, 1fr) 80px;
+      align-items: center; gap: 10px;
+      padding: 16px clamp(12px, 2.5vw, 30px) 0;
+    }
+    .lb-figure { display: grid; place-items: center; height: 100%; min-height: 0; margin: 0; }
+    .lb-figure img {
+      max-width: 100%; max-height: 100%; width: auto; height: auto;
+      object-fit: contain; animation: lbImageIn .4s var(--ease);
+      box-shadow: 0 28px 80px -25px rgba(0, 0, 0, .55);
+    }
+    @keyframes lbImageIn { from { opacity: .35; transform: scale(.995); } }
+    .lb-nav {
+      width: 44px; height: 44px; display: grid; place-items: center;
+      border: 1px solid rgba(238, 248, 252, .22); border-radius: 50%;
+      background: transparent; color: #eef8fc; font-size: 17px;
+      justify-self: center; transition: background-color .25s, color .25s, border-color .25s;
+    }
+    .lb-nav:hover { background: var(--blue); border-color: var(--blue); color: var(--ink); }
+    .lb-caption {
+      display: flex; align-items: center; justify-content: space-between; gap: 20px;
+      padding: 13px clamp(22px, 4vw, 50px) 7px;
+      color: #a9c5d3; font-size: 9px; letter-spacing: .08em;
+    }
+    .lb-caption .lb-hint { color: #6f95a7; font-family: var(--mono); font-size: 8px; letter-spacing: .03em; }
+    .lb-strip {
+      display: flex; justify-content: center; gap: 8px;
+      min-height: 83px; padding: 8px 24px 16px; overflow-x: auto; scrollbar-width: thin;
+    }
+    .lb-strip button {
+      flex: 0 0 74px; width: 74px; height: 54px; padding: 2px;
+      border: 1px solid transparent; background: transparent; opacity: .42;
+      transition: opacity .2s, border-color .2s;
+    }
+    .lb-strip button:hover { opacity: .8; }
+    .lb-strip button.is-active { border-color: var(--blue); opacity: 1; }
+    .lb-strip img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* ---------- toast / utilities ---------- */
+    .toast {
+      position: fixed; left: 50%; bottom: 28px; z-index: 9500;
+      padding: 11px 18px; border-radius: 999px;
+      background: var(--ink); color: var(--white);
+      box-shadow: 0 14px 35px -14px rgba(8, 29, 42, .55);
+      font-size: 10.5px; letter-spacing: .04em;
+      opacity: 0; transform: translate(-50%, 12px); pointer-events: none;
+      transition: opacity .25s, transform .3s var(--ease);
+    }
+    .toast.is-visible { opacity: 1; transform: translate(-50%, 0); }
+    .media.is-broken { position: relative; background: linear-gradient(135deg, #e6f1f7, #d4e8f2); }
+    .media.is-broken img { opacity: 0; }
+    .media.is-broken::before {
+      content: "照片未找到"; position: absolute; inset: 0; z-index: 1;
+      display: grid; place-items: center; color: var(--muted);
+      font-family: var(--sans); font-size: 9px; letter-spacing: .12em;
+    }
+    .js [data-reveal] { opacity: 0; transform: translateY(28px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+    .js [data-reveal].is-visible { opacity: 1; transform: none; }
+    body.lightbox-open { overflow: hidden; }
+
+    /* ---------- responsive ---------- */
+    @media (max-width: 1180px) {
+      .hero { grid-template-columns: minmax(0, 1.08fr) minmax(300px, .92fr); }
+      .hero h1 { font-size: clamp(54px, 7.5vw, 94px); }
+      .hero-gallery { height: clamp(420px, 50vw, 580px); }
+      .hero-vertical { display: none; }
+      .collection-row { grid-template-columns: 38px minmax(0, 1fr) 150px 76px 40px; gap: 16px; }
+    }
+    @media (max-width: 900px) {
+      :root { --header-h: 68px; }
+      .site-header { height: 68px; }
+      .site-header.is-scrolled { height: 64px; }
+      .site-nav {
+        position: fixed; top: 68px; left: 0; right: 0; bottom: 0;
+        display: flex; flex-direction: column; align-items: stretch; gap: 0;
+        padding: 12px 24px 48px; overflow-y: auto;
+        border-top: 1px solid var(--line);
+        background: var(--paper);
+        opacity: 0; visibility: hidden; pointer-events: none;
+        transform: translateY(-8px);
+        transition: opacity .25s, transform .3s var(--ease), visibility .25s;
+      }
+      body.nav-open .site-header { background: var(--paper); border-color: var(--line); }
+      body.nav-open .site-nav { opacity: 1; visibility: visible; pointer-events: auto; transform: none; }
+      .site-nav a { justify-content: flex-start; padding: 16px 2px; border-bottom: 1px solid var(--line); font-family: var(--serif); font-size: 20px; letter-spacing: .08em; }
+      .site-nav a::after { display: none; }
+      .site-nav a span { order: 2; margin-left: auto; font-size: 8px; }
+      .nav-foot {
+        display: flex; flex-direction: column; gap: 5px;
+        margin-top: auto; padding-top: 40px;
+        color: var(--muted); font-family: var(--serif); font-size: 13px; letter-spacing: .06em;
+      }
+      .nav-foot small { font-family: var(--sans); font-size: 7px; letter-spacing: .18em; }
+      .header-actions { margin-left: auto; }
+      .header-link { display: none; }
+      .menu-toggle { display: flex; }
+      .hero {
+        grid-template-columns: 1fr; gap: 24px;
+        min-height: 0; padding: 112px var(--pad) 96px;
+      }
+      .hero h1 { font-size: clamp(51px, 10.8vw, 88px); }
+      .hero-lede, .hero-actions, .hero-meta { margin-left: 0; }
+      .hero-lede { max-width: 500px; }
+      .hero-gallery { height: clamp(360px, 67vw, 520px); margin-top: 22px; }
+      .hero-orbit { left: 7%; width: 86%; }
+      .hero-hint { bottom: -26px; right: 1%; }
+      .hero-scroll { display: none; }
+      .section-head { grid-template-columns: 1fr; gap: 22px; }
+      .section-aside { padding-bottom: 0; }
+      .section-aside p { max-width: 430px; }
+      .flow-foot { align-items: flex-start; flex-direction: column; gap: 12px; }
+      .reel-window { margin-top: 36px; }
+      .collection-row { grid-template-columns: 34px minmax(0, 1fr) 76px 38px; padding: 18px 4px; }
+      .collection-row:hover { padding-left: 8px; }
+      .row-thumb { display: none; }
+      .row-main h3 { font-size: clamp(25px, 5vw, 37px); }
+      .row-meta { font-size: 8px; }
+      .about-inner { grid-template-columns: 1fr; gap: 26px; }
+      .about-kicker { padding-top: 0; }
+      .about-copy { grid-template-columns: 1fr; gap: 22px; }
+      .about-sign { justify-content: flex-start; }
+      .contact-main { grid-template-columns: 1fr; align-items: start; }
+      .contact-side { padding-top: 10px; }
+      .footer-inner { grid-template-columns: 1fr auto; align-items: start; }
+      .footer-copy { grid-column: 1 / -1; text-align: left; }
+      .album-head { grid-template-columns: 1fr; gap: 26px; padding-top: 54px; }
+      .album-note { max-width: 550px; }
+      .album-cover-btn { aspect-ratio: 4 / 3; max-height: none; }
+    }
+    @media (max-width: 640px) {
+      .brand-text strong { font-size: 15px; }
+      .brand-text small { font-size: 6px; letter-spacing: .12em; }
+      .brand-mark { width: 34px; height: 34px; font-size: 15px; }
+      .hero { padding-top: 100px; padding-bottom: 82px; }
+      .hero h1 { font-size: clamp(42px, 12.1vw, 60px); line-height: 1.08; }
+      .hero-lede { font-size: 12.5px; line-height: 2; }
+      .hero-actions { gap: 18px; flex-wrap: wrap; }
+      .hero-meta { gap: 19px; margin-top: 32px; }
+      .hero-meta strong { font-size: 24px; }
+      .hero-meta .meta-label { display: none; }
+      .hero-gallery { height: clamp(330px, 96vw, 450px); margin-top: 16px; }
+      .hero-photo--main { width: 65%; height: 77%; right: 2%; }
+      .hero-photo--side { width: 43%; height: 45%; top: 41%; }
+      .hero-photo--small { width: 31%; height: 24%; }
+      .hero-hint { display: none; }
+      .section-title { font-size: clamp(38px, 11vw, 56px); }
+      .title-en { display: block; margin: 8px 0 0; vertical-align: 0; }
+      .flow { padding-top: 70px; }
+      .reel-window { -webkit-mask-image: linear-gradient(90deg, transparent, #000 3%, #000 97%, transparent); mask-image: linear-gradient(90deg, transparent, #000 3%, #000 97%, transparent); }
+      .reel-window::before, .reel-window::after { width: 4vw; }
+      .reel-card { width: 70vw; max-width: 300px; }
+      .reel-card:nth-child(even) { margin-top: 26px; }
+      .reel-meta { margin-top: 9px; }
+      .reel-title { font-size: 15px; }
+      .flow-foot { padding: 0 var(--pad); font-size: 9px; }
+      .collections { padding-top: 78px; }
+      .collection-row { grid-template-columns: 27px minmax(0, 1fr) 34px; gap: 10px; padding: 17px 2px; }
+      .collection-row:hover { padding-left: 2px; }
+      .row-no { padding-top: 5px; font-size: 8px; }
+      .row-meta { display: none; }
+      .row-thumb { display: none; }
+      .row-main h3 { font-size: clamp(24px, 7.6vw, 34px); }
+      .row-arrow { width: 31px; height: 31px; font-size: 12px; }
+      .about { padding-top: 72px; padding-bottom: 76px; }
+      .about-main h2 { font-size: clamp(31px, 9vw, 48px); line-height: 1.35; }
+      .about-copy p { font-size: 12px; line-height: 2.05; }
+      .contact { padding-top: 76px; }
+      .contact h2 { font-size: clamp(41px, 12vw, 64px); }
+      .contact-foot { flex-direction: column; align-items: flex-start; gap: 6px; margin-top: 58px; }
+      .footer-inner { grid-template-columns: 1fr; gap: 22px; }
+      .footer-nav { gap: 18px; }
+      .album-topbar { min-height: 61px; }
+      .album-brand { display: none; }
+      .album-copy { font-size: 9px; }
+      .album-head { padding-top: 46px; }
+      .album-head h1 { font-size: clamp(52px, 16vw, 86px); }
+      .album-kicker { gap: 13px; }
+      .album-note { padding-left: 14px; font-size: 11px; }
+      .album-cover { padding: 0 14px; }
+      .album-cover-btn { aspect-ratio: 4 / 3.1; }
+      .album-grid { columns: 1; padding: 0 14px; }
+      .album-gallery-head { padding-left: 14px; padding-right: 14px; }
+      .album-end { padding-left: 18px; padding-right: 18px; }
+      .album-end-link strong { font-size: clamp(31px, 9vw, 47px); }
+      .album-end-arrow { width: 40px; height: 40px; }
+      .lb-main { grid-template-columns: 1fr; position: relative; padding: 8px 10px 0; }
+      .lb-nav { position: absolute; top: 50%; z-index: 2; width: 38px; height: 38px; transform: translateY(-50%); background: rgba(7, 28, 40, .6); }
+      .lb-nav--prev { left: 13px; }
+      .lb-nav--next { right: 13px; }
+      .lb-caption { padding: 10px 16px 5px; font-size: 8px; }
+      .lb-caption .lb-hint { display: none; }
+      .lb-strip { min-height: 66px; padding: 5px 14px 10px; justify-content: flex-start; }
+      .lb-strip button { flex-basis: 54px; width: 54px; height: 40px; }
+      .lb-bar { min-height: 55px; }
+      .lb-title { font-size: 13px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reel-track { animation: none !important; }
+      .reel-window { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
+      .js [data-reveal] { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <div class="page-noise" aria-hidden="true"></div>
+
+  <header class="site-header" id="siteHeader">
+    <a class="brand" href="#/" aria-label="安玖的小站，回到首页">
+      <span class="brand-mark" aria-hidden="true">玖</span>
+      <span class="brand-text">
+        <strong>安玖的小站</strong>
+        <small lang="en">ANJIU'S PHOTO JOURNAL</small>
+      </span>
+    </a>
+    <nav class="site-nav" id="siteNav" aria-label="主导航">
+      <a href="#flow"><span>01</span>流动影集</a>
+      <a href="#collections"><span>02</span>全部系列</a>
+      <a href="#about"><span>03</span>关于</a>
+      <a href="#contact"><span>04</span>联系</a>
+      <div class="nav-foot" aria-hidden="true">
+        <span>把光，留在缓慢的日常里。</span>
+        <small lang="en">ANJIU'S PHOTO JOURNAL · 2026</small>
+      </div>
+    </nav>
+    <div class="header-actions">
+      <a class="header-link" href="#contact">说声你好 <span aria-hidden="true">↗</span></a>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="siteNav">
+        <i aria-hidden="true"></i><i aria-hidden="true"></i><span class="sr-only">打开菜单</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="home" id="homeView">
+      <section class="hero" aria-labelledby="heroTitle">
+        <div class="hero-copy">
+          <p class="eyebrow hero-eyebrow">
+            <span class="eyebrow-line" aria-hidden="true"></span>
+            <span lang="en">PHOTOGRAPHS &amp; SMALL MOMENTS</span>
+          </p>
+          <h1 id="heroTitle">把光，留在<br><em>缓慢</em>的日常里<span class="title-dot">。</span></h1>
+          <p class="hero-lede">这里收藏安玖按下快门的瞬间：人物、日常、旅途中遇见的风景，还有一些不想忘记的光。</p>
+          <div class="hero-actions">
+            <a class="btn btn-solid" href="#flow"><span>开始漫游</span><span class="btn-arrow" aria-hidden="true">↓</span></a>
+            <a class="text-link" href="#collections">查看全部系列 <span aria-hidden="true">↗</span></a>
+          </div>
+          <div class="hero-meta" aria-label="站点统计">
+            <div><strong id="heroAlbumCount">00</strong><span>个系列</span></div>
+            <div><strong id="heroPhotoCount">0</strong><span>张照片</span></div>
+            <div><span class="meta-label" lang="en">LIGHT, SLOWLY</span></div>
+          </div>
+        </div>
+
+        <div class="hero-gallery" id="heroGallery" aria-label="精选系列封面">
+          <div class="hero-orbit" aria-hidden="true"></div>
+          <span class="hero-vertical" lang="en" aria-hidden="true">SELECTED MOMENTS · 2026</span>
+          <p class="hero-hint">点击照片，走进一个系列 <span aria-hidden="true">→</span></p>
+        </div>
+        <div class="hero-scroll" aria-hidden="true"><span></span>SCROLL TO WANDER</div>
+      </section>
+
+      <section class="flow" id="flow" aria-labelledby="flowTitle">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow"><span class="eyebrow-line" aria-hidden="true"></span><span lang="en">NOW FLOWING</span></p>
+            <h2 class="section-title" id="flowTitle">流动影集<span class="title-en" lang="en">THE FLOW</span></h2>
+          </div>
+          <div class="section-aside">
+            <p>每个系列选出一张照片，在这里缓慢经过。把鼠标停在照片上，时间就会暂停。</p>
+            <div class="flow-controls">
+              <button class="reel-toggle" id="reelToggle" type="button" aria-pressed="false">
+                <i aria-hidden="true">Ⅱ</i><span>暂停流动</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="reel-window" id="reelWindow" aria-label="自动滚动的系列封面">
+          <div class="reel-track" id="reelTrack"></div>
+        </div>
+        <div class="flow-foot">
+          <span>每一张封面，都是一个系列的开始。</span>
+          <div class="flow-foot-right">
+            <a href="#collections">按顺序看全部 <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="collections" id="collections" aria-labelledby="collectionsTitle">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow"><span class="eyebrow-line" aria-hidden="true"></span><span lang="en">THE ARCHIVE</span></p>
+            <h2 class="section-title" id="collectionsTitle">全部系列<span class="title-en" lang="en">ALL COLLECTIONS</span></h2>
+          </div>
+          <div class="section-aside">
+            <p>一些零散的光，按心情收在一起。没有顺序，也不需要顺序。</p>
+          </div>
+        </div>
+        <div class="collection-list" id="collectionList" role="list"></div>
+        <div class="empty-state" id="emptyState" hidden>
+          <div class="empty-visual" aria-hidden="true">玖</div>
+          <h3>影集正在整理</h3>
+          <p>光还在路上。过些天再来看看。</p>
+        </div>
+      </section>
+
+      <section class="about" id="about" aria-labelledby="aboutTitle">
+        <span class="about-watermark" aria-hidden="true">光</span>
+        <div class="about-inner">
+          <div class="about-kicker" lang="en">ABOUT THIS PLACE / 01</div>
+          <div class="about-main">
+            <h2 id="aboutTitle" data-reveal>拍照，是我和日常<br>保持联系的方式。</h2>
+            <div class="about-copy" data-reveal>
+              <div>
+                <p>我是安玖。这里放着一些我拍下的照片：人物、日常、旅途中遇见的风景。</p>
+                <p>这个小站没有复杂的栏目，只把喜欢的瞬间慢慢收好。浅蓝色是海和清晨的颜色，也是我看这些照片时的心情。</p>
+                <p>谢谢你路过这里。愿你也能在某一束光里，慢下来一会儿。</p>
+              </div>
+              <div class="about-sign">
+                <strong>安玖</strong>
+                <span lang="en">ANJIU · SINCE 2026</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact" id="contact" aria-labelledby="contactTitle">
+        <div class="contact-main">
+          <div>
+            <p class="eyebrow"><span class="eyebrow-line" aria-hidden="true"></span><span lang="en">SAY HELLO</span></p>
+            <h2 id="contactTitle">如果你也刚好<br>喜欢这些<em>光</em>。</h2>
+          </div>
+          <div class="contact-side">
+            <p>这里放着我拍下的一些照片。欢迎来聊照片、旅行，或者某个让你停下来的瞬间。</p>
+            <div class="contact-links">
+              <a class="contact-link" id="contactGithub" href="https://github.com/agu3-miku" target="_blank" rel="noopener">
+                <span id="contactGithubLabel">GitHub · @agu3-miku</span><span aria-hidden="true">↗</span>
+              </a>
+              <button class="contact-link contact-link--copy" id="contactWechat" type="button" aria-label="复制微信号 D2141161717">
+                <span id="contactWechatLabel">微信 · D2141161717</span><span class="copy-note">点击复制</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="contact-foot">
+          <span>安玖的小站 · 一个安静的摄影手记</span>
+          <span lang="en">PHOTOGRAPHS &amp; SMALL MOMENTS</span>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <div class="footer-inner">
+          <div class="footer-brand">
+            <strong>安玖的小站</strong>
+            <span lang="en">ANJIU'S PHOTO JOURNAL</span>
+          </div>
+          <nav class="footer-nav" aria-label="页脚导航">
+            <a href="#flow">流动影集</a>
+            <a href="#collections">全部系列</a>
+            <a href="#about">关于</a>
+            <a href="#contact">联系</a>
+          </nav>
+          <div class="footer-copy">
+            <span>© <span id="footerYear">2026</span> 安玖的小站</span><br>
+            <span lang="en">MADE WITH LIGHT &amp; PATIENCE</span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <section class="album-view" id="albumView" hidden aria-labelledby="albumTitle">
+      <div class="album-topbar">
+        <a class="album-back" href="#/"><span aria-hidden="true">←</span> 返回全部系列</a>
+        <a class="album-brand" href="#/">安玖的小站<small lang="en">ANJIU'S PHOTO JOURNAL</small></a>
+        <button class="album-copy" id="copyAlbumLink" type="button"><span>复制本页链接</span><span aria-hidden="true">↗</span></button>
+      </div>
+
+      <header class="album-head">
+        <div>
+          <div class="album-kicker">
+            <span id="albumIndex">COLLECTION 01</span>
+          </div>
+          <h1 id="albumTitle" tabindex="-1"></h1>
+          <div class="album-head-row">
+            <p class="album-count" id="albumCount"></p>
+          </div>
+        </div>
+        <p class="album-note" id="albumNote">一些被光照亮的瞬间。</p>
+      </header>
+
+      <figure class="album-cover" id="albumCoverFigure">
+        <button class="album-cover-btn media" id="albumCoverBtn" type="button" aria-label="查看封面大图">
+          <img id="albumCover" alt="" fetchpriority="high" decoding="async">
+          <span class="album-cover-tag">COVER / <span id="albumCoverFrame">01</span></span>
+        </button>
+      </figure>
+
+      <div class="album-gallery-head">
+        <span>THE PHOTOGRAPHS</span>
+        <span id="albumScrollHint">向下，慢慢看</span>
+      </div>
+      <div class="album-grid" id="albumGrid"></div>
+
+      <div class="album-end">
+        <p class="eyebrow"><span class="eyebrow-line" aria-hidden="true"></span><span lang="en">NEXT COLLECTION</span></p>
+        <a class="album-end-link" id="nextAlbumLink" href="#/">
+          <strong id="nextAlbumTitle">回到全部系列</strong>
+          <span class="album-end-arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="album-back-home" href="#/">← 回到首页</a>
+      </div>
+
+      <footer class="album-footer">
+        <span>© <span id="albumFooterYear">2026</span> 安玖的小站</span>
+        <span lang="en">LIGHT, SLOWLY</span>
+      </footer>
+    </section>
+  </main>
+
+  <dialog class="lightbox" id="lightbox" aria-label="照片查看器">
+    <div class="lb-bar">
+      <span class="lb-counter" id="lbCounter">01 / 05</span>
+      <span class="lb-title" id="lbTitle"></span>
+      <button class="lb-close" id="lbClose" type="button" aria-label="关闭照片查看器">×</button>
+    </div>
+    <div class="lb-main" id="lbStage">
+      <button class="lb-nav lb-nav--prev" id="lbPrev" type="button" aria-label="上一张照片">←</button>
+      <figure class="lb-figure"><img id="lbImage" alt=""></figure>
+      <button class="lb-nav lb-nav--next" id="lbNext" type="button" aria-label="下一张照片">→</button>
+    </div>
+    <div class="lb-caption">
+      <span id="lbCaption"></span>
+      <span class="lb-hint" lang="en">← → TO NAVIGATE · ESC TO CLOSE</span>
+    </div>
+    <div class="lb-strip" id="lbStrip" aria-label="照片缩略图"></div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script id="site-config" type="application/json">
+  {
+    "site": {
+      "name": "安玖的小站",
+      "nameEn": "ANJIU'S PHOTO JOURNAL",
+      "coverStrategy": "first",
+      "github": {
+        "owner": "agu3-miku",
+        "repo": "agu3-miku.github.io",
+        "branch": "main"
+      },
+      "contact": {
+        "wechat": "D2141161717"
+      }
+    }
+  }
+  </script>
+
+  <script>
+  (() => {
+    'use strict';
+
+    const $ = (selector, root = document) => root.querySelector(selector);
+    const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
+    const COLLATOR = new Intl.Collator('zh-Hans-CN', { numeric: true, sensitivity: 'base' });
+    const CACHE_KEY = 'anjiu-site-tree-v1';
+    const API = 'https://api.github.com';
+
+    const esc = (value = '') => String(value).replace(/[&<>"']/g, (character) => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    }[character]));
+    const pad2 = (number) => String(number).padStart(2, '0');
+    const isJpg = (name) => /\.(jpe?g)$/i.test(name);
+    const fileUrl = (dir, file) => [dir, file]
+      .map((part) => part.split('/').map(encodeURIComponent).join('/'))
+      .join('/');
+    const albumHref = (collection) => '#/album/' + encodeURIComponent(collection.dir);
+
+    let config = { site: {} };
+    try {
+      config = JSON.parse($('#site-config').textContent);
+    } catch (error) {
+      console.warn('Site config could not be parsed.', error);
+    }
+    const site = Object.assign({
+      name: '安玖的小站',
+      nameEn: "ANJIU'S PHOTO JOURNAL",
+      coverStrategy: 'first',
+      github: {},
+      contact: {}
+    }, config.site || {});
+
+    const state = {
+      collections: [],
+      activeAlbum: null,
+      lightbox: null,
+      lightboxTrigger: null,
+      lastTrigger: null,
+      homeScroll: 0,
+      github: { owner: '', repo: '', branch: '' }
+    };
+
+    function naturalSort(a, b) {
+      return COLLATOR.compare(a, b);
+    }
+
+    function hashString(value) {
+      let hash = 2166136261;
+      for (let index = 0; index < value.length; index += 1) {
+        hash ^= value.charCodeAt(index);
+        hash = Math.imul(hash, 16777619);
+      }
+      return hash >>> 0;
+    }
+
+    function pickCover(dir, photos) {
+      if (!photos.length) return null;
+      if (site.coverStrategy === 'hash') {
+        return photos.reduce((best, photo) => {
+          return hashString(dir + '/' + photo) < hashString(dir + '/' + best) ? photo : best;
+        }, photos[0]);
+      }
+      return photos[0];
+    }
+
+    function makeCollection(dir, photos, index = 0) {
+      const sorted = Array.from(new Set((photos || []).filter(isJpg))).sort(naturalSort);
+      if (!sorted.length) return null;
+      return {
+        dir,
+        // 合集名永远来自文件夹名；没有任何标题清单可以覆盖它。
+        title: dir,
+        photos: sorted,
+        cover: pickCover(dir, sorted),
+        index
+      };
+    }
+
+    function buildCollections(entries) {
+      return (entries || [])
+        .filter((entry) => entry && entry.dir)
+        .map((entry) => makeCollection(entry.dir, entry.photos || [], 0))
+        .filter(Boolean)
+        .sort((a, b) => naturalSort(a.dir, b.dir))
+        .map((collection, index) => Object.assign(collection, { index }));
+    }
+
+    function collectionsFromPaths(paths) {
+      const groups = new Map();
+      paths.forEach((path) => {
+        if (typeof path !== 'string') return;
+        const parts = path.split('/');
+        if (parts.length !== 2) return;
+        const dir = parts[0];
+        const file = parts[1];
+        if (!dir || dir.startsWith('.') || !isJpg(file)) return;
+        if (!groups.has(dir)) groups.set(dir, []);
+        groups.get(dir).push(file);
+      });
+      return buildCollections(Array.from(groups, ([dir, photos]) => ({ dir, photos })));
+    }
+
+    async function loadLocalCollections() {
+      try {
+        const response = await fetch('__local_collections.json?t=' + Date.now(), { cache: 'no-store' });
+        if (!response.ok) return false;
+        const data = await response.json();
+        if (!data || !Array.isArray(data.collections)) return false;
+        state.collections = buildCollections(data.collections);
+        renderAll();
+        return true;
+      } catch (error) {
+        return false;
+      }
+    }
+
+    function detectRepo() {
+      const config = site.github || {};
+      let owner = String(config.owner || '').trim();
+      let repo = String(config.repo || '').trim();
+      let branch = String(config.branch || '').trim();
+      const host = location.hostname;
+      const segments = location.pathname.split('/').filter(Boolean);
+      const isGitHubPages = /\.github\.io$/i.test(host);
+
+      if (isGitHubPages) {
+        if (!owner) owner = host.split('.')[0];
+        if (!repo) {
+          const first = segments[0] ? decodeURIComponent(segments[0]) : '';
+          repo = first && !first.includes('.') ? first : owner + '.github.io';
+        }
+      } else if (owner && !repo) {
+        repo = owner + '.github.io';
+      }
+
+      if (!owner || !repo) return { owner: '', repo: '', branch: '' };
+      return { owner, repo, branch };
+    }
+
+    async function fetchJson(url) {
+      const controller = new AbortController();
+      const timer = window.setTimeout(() => controller.abort(), 10000);
+      try {
+        const response = await fetch(url, {
+          headers: {
+            'Accept': 'application/vnd.github+json',
+            'X-GitHub-Api-Version': '2022-11-28'
+          },
+          cache: 'no-store',
+          signal: controller.signal
+        });
+        if (!response.ok) throw new Error('GitHub API responded with ' + response.status);
+        return await response.json();
+      } finally {
+        window.clearTimeout(timer);
+      }
+    }
+
+    function readTreeCache(owner, repo) {
+      try {
+        const raw = localStorage.getItem(CACHE_KEY + ':' + owner + '/' + repo);
+        if (!raw) return null;
+        const cached = JSON.parse(raw);
+        if (!cached || !Array.isArray(cached.paths)) return null;
+        return cached;
+      } catch (error) {
+        return null;
+      }
+    }
+
+    function writeTreeCache(owner, repo, branch, paths) {
+      try {
+        localStorage.setItem(CACHE_KEY + ':' + owner + '/' + repo, JSON.stringify({
+          branch, paths, savedAt: Date.now()
+        }));
+      } catch (error) {
+        /* Storage can be unavailable in private modes. */
+      }
+    }
+
+    async function loadTree(owner, repo, configuredBranch, force = false) {
+      const cached = readTreeCache(owner, repo);
+      if (!force && cached) {
+        return { paths: cached.paths, branch: cached.branch, stale: false };
+      }
+
+      // 页面加载时仍然向 GitHub 取一次最新目录；缓存只用于首屏加速和请求失败时回退。
+      let branch = configuredBranch || (cached && cached.branch) || '';
+      try {
+        if (!branch) {
+          const info = await fetchJson(API + '/repos/' + encodeURIComponent(owner) + '/' + encodeURIComponent(repo));
+          branch = info.default_branch || 'main';
+        }
+        let tree = await fetchJson(API + '/repos/' + encodeURIComponent(owner) + '/' + encodeURIComponent(repo) + '/git/trees/' + encodeURIComponent(branch) + '?recursive=1');
+        if (!tree || !Array.isArray(tree.tree)) throw new Error('Unexpected tree response');
+        const paths = tree.tree.filter((item) => item.type === 'blob').map((item) => item.path);
+        writeTreeCache(owner, repo, branch, paths);
+        return { paths, branch, stale: false };
+      } catch (error) {
+        if (cached) return { paths: cached.paths, branch: cached.branch, stale: true };
+        throw error;
+      }
+    }
+
+    async function syncFromGitHub() {
+      const repoInfo = detectRepo();
+      state.github = repoInfo;
+      updateContact();
+
+      if (!repoInfo.owner || !repoInfo.repo || !/^https?:$/.test(location.protocol)) return;
+
+      const cached = readTreeCache(repoInfo.owner, repoInfo.repo);
+      if (cached) {
+        const cachedCollections = collectionsFromPaths(cached.paths);
+        if (cachedCollections.length) {
+          state.collections = cachedCollections;
+          renderAll();
+        }
+      }
+
+      try {
+        const result = await loadTree(repoInfo.owner, repoInfo.repo, repoInfo.branch, true);
+        state.github.branch = result.branch || repoInfo.branch;
+        state.collections = collectionsFromPaths(result.paths);
+        renderAll();
+      } catch (error) {
+        console.warn('GitHub directory sync failed.', error);
+      }
+    }
+
+    function updateContact() {
+      const owner = state.github.owner || site.github.owner || 'agu3-miku';
+      const githubLink = $('#contactGithub');
+      if (githubLink) githubLink.href = 'https://github.com/' + encodeURIComponent(owner);
+      const githubLabel = $('#contactGithubLabel');
+      if (githubLabel) githubLabel.textContent = 'GitHub · @' + owner;
+      const wechat = site.contact && site.contact.wechat;
+      const wechatButton = $('#contactWechat');
+      const wechatLabel = $('#contactWechatLabel');
+      if (wechatButton) wechatButton.hidden = !wechat;
+      if (wechat && wechatLabel) {
+        wechatLabel.textContent = '微信 · ' + wechat;
+        wechatButton.setAttribute('aria-label', '复制微信号 ' + wechat);
+      }
+    }
+
+    function updateStats() {
+      const count = state.collections.length;
+      const photos = state.collections.reduce((total, collection) => total + collection.photos.length, 0);
+      const albumCount = $('#heroAlbumCount');
+      const photoCount = $('#heroPhotoCount');
+      if (albumCount) albumCount.textContent = pad2(count);
+      if (photoCount) photoCount.textContent = String(photos);
+    }
+
+    function renderHeroGallery() {
+      const gallery = $('#heroGallery');
+      if (!gallery) return;
+      $$('.hero-photo', gallery).forEach((node) => node.remove());
+      const classes = ['hero-photo--main', 'hero-photo--side', 'hero-photo--small'];
+      const picks = state.collections.slice(0, 3);
+      const fragment = document.createDocumentFragment();
+      picks.forEach((collection, index) => {
+        const link = document.createElement('a');
+        link.className = 'hero-photo media ' + classes[index];
+        link.href = albumHref(collection);
+        link.dataset.title = collection.title + ' · ' + pad2(collection.photos.length) + ' 张';
+        link.setAttribute('aria-label', '查看系列：' + collection.title);
+        const image = document.createElement('img');
+        image.src = fileUrl(collection.dir, collection.cover);
+        image.alt = collection.title + ' 系列封面';
+        image.loading = 'eager';
+        image.fetchPriority = index === 0 ? 'high' : 'auto';
+        image.decoding = 'async';
+        image.draggable = false;
+        link.appendChild(image);
+        fragment.appendChild(link);
+      });
+      const hint = $('.hero-hint', gallery);
+      if (hint) {
+        hint.hidden = !picks.length;
+        gallery.insertBefore(fragment, hint);
+      } else {
+        gallery.appendChild(fragment);
+      }
+    }
+
+    function buildReelGroup(collections, clone) {
+      const group = document.createElement('div');
+      group.className = 'reel-group';
+      if (clone) group.setAttribute('aria-hidden', 'true');
+      const fragment = document.createDocumentFragment();
+      collections.forEach((collection) => {
+        const link = document.createElement('a');
+        link.className = 'reel-card';
+        link.href = albumHref(collection);
+        link.setAttribute('aria-label', '查看系列：' + collection.title);
+        if (clone) link.tabIndex = -1;
+        link.innerHTML =
+          '<span class="reel-frame media">' +
+            '<img src="' + esc(fileUrl(collection.dir, collection.cover)) + '" alt="" loading="lazy" decoding="async" draggable="false">' +
+            '<span class="reel-no">' + pad2(collection.index + 1) + '</span>' +
+            '<span class="reel-open"><span>查看系列</span><b aria-hidden="true">↗</b></span>' +
+          '</span>' +
+          '<span class="reel-meta"><span class="reel-title">' + esc(collection.title) + '</span><span class="reel-count">' + pad2(collection.photos.length) + ' 张</span></span>';
+        fragment.appendChild(link);
+      });
+      group.appendChild(fragment);
+      return group;
+    }
+
+    function renderFlow() {
+      const section = $('#flow');
+      const track = $('#reelTrack');
+      if (!section || !track) return;
+      if (!state.collections.length) {
+        section.hidden = true;
+        track.replaceChildren();
+        return;
+      }
+      section.hidden = false;
+      const repeat = Math.max(1, Math.ceil(6 / state.collections.length));
+      const sequence = [];
+      for (let index = 0; index < repeat; index += 1) sequence.push(...state.collections);
+      track.replaceChildren(buildReelGroup(sequence, false), buildReelGroup(sequence, true));
+      const duration = Math.max(42, sequence.length * 6.8);
+      track.style.setProperty('--reel-duration', duration.toFixed(1) + 's');
+    }
+
+    function renderCollectionList() {
+      const list = $('#collectionList');
+      const empty = $('#emptyState');
+      if (!list || !empty) return;
+      if (!state.collections.length) {
+        list.replaceChildren();
+        list.hidden = true;
+        empty.hidden = false;
+        return;
+      }
+      empty.hidden = true;
+      list.hidden = false;
+      list.innerHTML = state.collections.map((collection) => {
+        const href = albumHref(collection);
+        return '<a class="collection-row" href="' + esc(href) + '" role="listitem" data-reveal>' +
+          '<span class="row-no">' + pad2(collection.index + 1) + '</span>' +
+          '<div class="row-main">' +
+            '<div class="row-title-wrap"><h3>' + esc(collection.title) + '</h3></div>' +
+          '</div>' +
+          '<span class="row-thumb media"><img src="' + esc(fileUrl(collection.dir, collection.cover)) + '" alt="" loading="lazy" decoding="async" draggable="false"></span>' +
+          '<span class="row-meta"><span>' + pad2(collection.photos.length) + ' 张照片</span></span>' +
+          '<span class="row-arrow" aria-hidden="true">↗</span>' +
+        '</a>';
+      }).join('');
+      observeReveals();
+    }
+
+    let revealObserver = null;
+    function observeReveals() {
+      if (!('IntersectionObserver' in window)) {
+        $$('[data-reveal]').forEach((node) => node.classList.add('is-visible'));
+        return;
+      }
+      if (!revealObserver) {
+        revealObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          });
+        }, { rootMargin: '0px 0px -8% 0px', threshold: .08 });
+      }
+      $$('[data-reveal]:not(.is-visible)').forEach((node) => revealObserver.observe(node));
+    }
+
+    function preloadCover() {
+      if (!state.collections.length) return;
+      if ($('#cover-preload')) return;
+      const link = document.createElement('link');
+      link.id = 'cover-preload';
+      link.rel = 'preload';
+      link.as = 'image';
+      link.href = fileUrl(state.collections[0].dir, state.collections[0].cover);
+      link.fetchPriority = 'high';
+      document.head.appendChild(link);
+    }
+
+    function updateOgImage() {
+      const meta = $('meta[property="og:image"]');
+      if (!meta || !state.collections.length) return;
+      try {
+        meta.content = new URL(fileUrl(state.collections[0].dir, state.collections[0].cover), location.href).href;
+      } catch (error) {
+        /* Ignore malformed local URLs. */
+      }
+    }
+
+    function renderAll() {
+      updateStats();
+      renderHeroGallery();
+      renderFlow();
+      renderCollectionList();
+      updateContact();
+      observeReveals();
+      preloadCover();
+      updateOgImage();
+      if (state.activeAlbum) {
+        const next = state.collections.find((collection) => collection.dir === state.activeAlbum.dir);
+        if (next) renderAlbum(next);
+        else {
+          history.replaceState(null, '', '#/');
+          closeAlbum({ restore: 'top' });
+        }
+      }
+    }
+
+    let albumLayoutTimer = null;
+
+    function scheduleAlbumLayout(delay = 70) {
+      window.clearTimeout(albumLayoutTimer);
+      albumLayoutTimer = window.setTimeout(() => {
+        if (document.body.dataset.view === 'album') layoutAlbumGrid();
+      }, delay);
+    }
+
+    function resetAlbumLayout(grid) {
+      grid.classList.remove('is-justified');
+      grid.style.height = '';
+      $$('.album-item', grid).forEach((item) => item.removeAttribute('style'));
+    }
+
+    function layoutAlbumGrid() {
+      const grid = $('#albumGrid');
+      if (!grid || !state.activeAlbum) return;
+      const items = $$('.album-item', grid);
+      if (!items.length) return;
+      if (window.innerWidth <= 640) {
+        resetAlbumLayout(grid);
+        return;
+      }
+      if (!grid.clientWidth) return;
+
+      grid.classList.add('is-justified');
+      const computed = window.getComputedStyle(grid);
+      const padLeft = parseFloat(computed.paddingLeft) || 0;
+      const padRight = parseFloat(computed.paddingRight) || 0;
+      const padTop = parseFloat(computed.paddingTop) || 0;
+      const padBottom = parseFloat(computed.paddingBottom) || 0;
+      const available = grid.clientWidth - padLeft - padRight;
+      if (available <= 0) return;
+      const gap = Math.max(16, Math.min(28, available * 0.019));
+      const target = Math.min(560, Math.max(330, window.innerHeight * 0.55));
+      const minRowHeight = target * 0.72;
+      const maxRowHeight = target * 1.05;
+      const captionHeight = 23;
+
+      const entries = items.map((item) => {
+        const image = item.querySelector('img');
+        const ratio = image && image.naturalWidth > 0 && image.naturalHeight > 0
+          ? image.naturalWidth / image.naturalHeight
+          : 1.45;
+        return { item, ratio };
+      });
+
+      const rows = [];
+      let row = [];
+      let ratioSum = 0;
+      entries.forEach((entry) => {
+        if (!row.length) {
+          row = [entry];
+          ratioSum = entry.ratio;
+          return;
+        }
+        const proposedHeight = (available - gap * row.length) / (ratioSum + entry.ratio);
+        if (row.length >= 3 || (row.length >= 2 && proposedHeight < minRowHeight)) {
+          rows.push({ items: row, ratioSum });
+          row = [entry];
+          ratioSum = entry.ratio;
+        } else {
+          row.push(entry);
+          ratioSum += entry.ratio;
+        }
+      });
+      if (row.length) rows.push({ items: row, ratioSum });
+
+      let y = padTop;
+      rows.forEach((currentRow) => {
+        const count = currentRow.items.length;
+        let height = (available - gap * (count - 1)) / currentRow.ratioSum;
+        height = Math.min(height, maxRowHeight);
+        const rowWidth = currentRow.ratioSum * height + gap * (count - 1);
+        let x = padLeft + Math.max(0, (available - rowWidth) / 2);
+        currentRow.items.forEach((entry) => {
+          const width = height * entry.ratio;
+          entry.item.style.position = 'absolute';
+          entry.item.style.width = width + 'px';
+          entry.item.style.left = x + 'px';
+          entry.item.style.top = y + 'px';
+          entry.item.style.margin = '0';
+          x += width + gap;
+        });
+        y += height + captionHeight + gap;
+      });
+
+      grid.style.height = Math.max(0, y - gap + padBottom) + 'px';
+    }
+
+    function renderAlbum(collection) {
+      state.activeAlbum = collection;
+      const coverUrl = fileUrl(collection.dir, collection.cover);
+      $('#albumIndex').textContent = 'COLLECTION ' + pad2(collection.index + 1);
+      $('#albumTitle').textContent = collection.title;
+      $('#albumCount').textContent = pad2(collection.photos.length) + ' PHOTOGRAPHS';
+      $('#albumCover').src = coverUrl;
+      $('#albumCover').alt = collection.title + ' 系列封面';
+      $('#albumCoverFrame').textContent = '01';
+      $('#albumCoverBtn').setAttribute('aria-label', '查看《' + collection.title + '》封面大图');
+      $('#albumScrollHint').textContent = '向下，慢慢看 · ' + collection.photos.length + ' 张';
+
+      $('#albumGrid').innerHTML = collection.photos.map((photo, index) => {
+        return '<figure class="album-item">' +
+          '<button class="album-photo media" type="button" data-index="' + index + '" aria-label="查看第 ' + (index + 1) + ' 张照片">' +
+            '<img src="' + esc(fileUrl(collection.dir, photo)) + '" alt="' + esc(collection.title + ' 第 ' + (index + 1) + ' 张照片') + '" loading="' + (index < 2 ? 'eager' : 'lazy') + '" decoding="async" draggable="false">' +
+          '</button>' +
+          '<figcaption><span>FRAME ' + pad2(index + 1) + '</span><span>' + esc(collection.title) + '</span></figcaption>' +
+        '</figure>';
+      }).join('');
+
+      window.requestAnimationFrame(() => {
+        layoutAlbumGrid();
+        scheduleAlbumLayout(120);
+      });
+
+      const next = state.collections[(collection.index + 1) % state.collections.length];
+      const nextLink = $('#nextAlbumLink');
+      const nextTitle = $('#nextAlbumTitle');
+      if (next) {
+        nextLink.href = albumHref(next);
+        nextTitle.textContent = next.title;
+        nextLink.setAttribute('aria-label', '下一个系列：' + next.title);
+      } else {
+        nextLink.href = '#/';
+        nextTitle.textContent = '回到全部系列';
+      }
+    }
+
+    function openAlbum(collection, options = {}) {
+      if (!collection) return;
+      if (!state.activeAlbum) {
+        state.homeScroll = window.scrollY || window.pageYOffset || 0;
+      }
+      renderAlbum(collection);
+      $('#homeView').hidden = true;
+      $('#albumView').hidden = false;
+      document.body.dataset.view = 'album';
+      document.body.classList.remove('nav-open');
+      $('#menuToggle').setAttribute('aria-expanded', 'false');
+      document.title = collection.title + ' · 安玖的小站';
+      closeLightbox();
+      if (!options.fromRoute) {
+        const href = albumHref(collection);
+        if (location.hash !== href) location.hash = href;
+      }
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      window.requestAnimationFrame(() => {
+        layoutAlbumGrid();
+        const title = $('#albumTitle');
+        if (title && options.focus !== false) title.focus({ preventScroll: true });
+      });
+    }
+
+    function closeAlbum(options = {}) {
+      if (!state.activeAlbum && $('#albumView').hidden) return;
+      closeLightbox();
+      state.activeAlbum = null;
+      $('#albumView').hidden = true;
+      $('#homeView').hidden = false;
+      document.body.dataset.view = 'home';
+      document.title = '安玖的小站 · 摄影手记';
+
+      const restore = options.restore || 'none';
+      if (restore === 'saved') {
+        window.requestAnimationFrame(() => {
+          window.scrollTo({ top: state.homeScroll, left: 0, behavior: 'instant' });
+        });
+      } else if (restore === 'top') {
+        window.requestAnimationFrame(() => window.scrollTo({ top: 0, left: 0, behavior: 'instant' }));
+      } else if (restore === 'hash') {
+        const id = decodeURIComponent(location.hash.replace(/^#/, ''));
+        const target = id ? document.getElementById(id) : null;
+        if (target) window.requestAnimationFrame(() => target.scrollIntoView({ block: 'start' }));
+      }
+      const trigger = state.lastTrigger;
+      if (trigger && document.contains(trigger)) {
+        window.requestAnimationFrame(() => trigger.focus({ preventScroll: true }));
+      }
+    }
+
+    function handleRoute() {
+      const match = location.hash.match(/^#\/album\/(.+)$/);
+      if (match) {
+        let dir = match[1];
+        try { dir = decodeURIComponent(dir); } catch (error) { /* Keep raw. */ }
+        const collection = state.collections.find((item) => item.dir === dir);
+        if (collection) {
+          if (!state.activeAlbum || state.activeAlbum.dir !== collection.dir) {
+            openAlbum(collection, { fromRoute: true });
+          }
+          return;
+        }
+        showToast('没有找到这个系列');
+        history.replaceState(null, '', '#/');
+        closeAlbum({ restore: 'top' });
+        return;
+      }
+
+      if (state.activeAlbum) {
+        const restore = !location.hash || location.hash === '#/' ? 'saved' : 'hash';
+        closeAlbum({ restore });
+      }
+    }
+
+    function openLightbox(collection, index) {
+      if (!collection || !collection.photos.length) return;
+      state.lightbox = { collection, index: (index + collection.photos.length) % collection.photos.length };
+      state.lightboxTrigger = document.activeElement;
+      const dialog = $('#lightbox');
+      updateLightbox();
+      if (typeof dialog.showModal === 'function') {
+        if (!dialog.open) dialog.showModal();
+      } else {
+        dialog.setAttribute('open', '');
+      }
+      document.body.classList.add('lightbox-open');
+    }
+
+    function updateLightbox() {
+      if (!state.lightbox) return;
+      const { collection, index } = state.lightbox;
+      const photo = collection.photos[index];
+      const src = fileUrl(collection.dir, photo);
+      const image = $('#lbImage');
+      image.src = src;
+      image.alt = collection.title + ' 第 ' + (index + 1) + ' 张照片';
+      image.style.animation = 'none';
+      void image.offsetWidth;
+      image.style.animation = '';
+      $('#lbCounter').textContent = pad2(index + 1) + ' / ' + pad2(collection.photos.length);
+      $('#lbTitle').textContent = collection.title;
+      $('#lbCaption').textContent = collection.title + ' · ' + pad2(index + 1) + ' / ' + pad2(collection.photos.length);
+      const strip = $('#lbStrip');
+      strip.innerHTML = collection.photos.map((item, itemIndex) => {
+        return '<button type="button" data-index="' + itemIndex + '" class="' + (itemIndex === index ? 'is-active' : '') + '" aria-label="查看第 ' + (itemIndex + 1) + ' 张照片" aria-current="' + (itemIndex === index ? 'true' : 'false') + '">' +
+          '<img src="' + esc(fileUrl(collection.dir, item)) + '" alt="" loading="lazy" decoding="async">' +
+        '</button>';
+      }).join('');
+      const activeButton = $('.lb-strip button.is-active', strip);
+      if (activeButton) {
+        window.requestAnimationFrame(() => activeButton.scrollIntoView({ block: 'nearest', inline: 'center' }));
+      }
+      const nextIndex = (index + 1) % collection.photos.length;
+      const previousIndex = (index - 1 + collection.photos.length) % collection.photos.length;
+      [nextIndex, previousIndex].forEach((neighbor) => {
+        const preload = new Image();
+        preload.src = fileUrl(collection.dir, collection.photos[neighbor]);
+      });
+    }
+
+    function stepLightbox(direction) {
+      if (!state.lightbox) return;
+      const total = state.lightbox.collection.photos.length;
+      state.lightbox.index = (state.lightbox.index + direction + total) % total;
+      updateLightbox();
+    }
+
+    function closeLightbox() {
+      const dialog = $('#lightbox');
+      if (!dialog || !dialog.open) {
+        document.body.classList.remove('lightbox-open');
+        return;
+      }
+      if (typeof dialog.close === 'function') dialog.close();
+      else dialog.removeAttribute('open');
+      document.body.classList.remove('lightbox-open');
+      if (state.lightboxTrigger && document.contains(state.lightboxTrigger)) {
+        state.lightboxTrigger.focus({ preventScroll: true });
+      }
+      state.lightbox = null;
+    }
+
+    function showToast(message) {
+      const toast = $('#toast');
+      if (!toast) return;
+      toast.textContent = message;
+      toast.classList.add('is-visible');
+      window.clearTimeout(showToast.timer);
+      showToast.timer = window.setTimeout(() => toast.classList.remove('is-visible'), 2100);
+    }
+
+    async function copyText(text) {
+      if (navigator.clipboard && window.isSecureContext) {
+        try {
+          await navigator.clipboard.writeText(text);
+          return true;
+        } catch (error) {
+          /* Fall through to the older method. */
+        }
+      }
+      const area = document.createElement('textarea');
+      area.value = text;
+      area.setAttribute('readonly', '');
+      area.style.position = 'fixed';
+      area.style.opacity = '0';
+      document.body.appendChild(area);
+      area.select();
+      let copied = false;
+      try { copied = document.execCommand('copy'); } catch (error) { copied = false; }
+      area.remove();
+      return copied;
+    }
+
+    function bindEvents() {
+      window.addEventListener('scroll', () => {
+        $('#siteHeader').classList.toggle('is-scrolled', window.scrollY > 24);
+      }, { passive: true });
+
+      const menuToggle = $('#menuToggle');
+      menuToggle.addEventListener('click', () => {
+        const nextOpen = !document.body.classList.contains('nav-open');
+        document.body.classList.toggle('nav-open', nextOpen);
+        menuToggle.setAttribute('aria-expanded', String(nextOpen));
+        const label = $('.sr-only', menuToggle);
+        if (label) label.textContent = nextOpen ? '关闭菜单' : '打开菜单';
+      });
+      $$('#siteNav a, .site-footer a, .header-link').forEach((link) => {
+        link.addEventListener('click', () => {
+          document.body.classList.remove('nav-open');
+          menuToggle.setAttribute('aria-expanded', 'false');
+          const label = $('.sr-only', menuToggle);
+          if (label) label.textContent = '打开菜单';
+        });
+      });
+
+      document.addEventListener('click', (event) => {
+        const albumLink = event.target.closest('a[href^="#/album/"]');
+        if (albumLink && !albumLink.closest('[aria-hidden="true"]')) state.lastTrigger = albumLink;
+      }, true);
+
+      window.addEventListener('hashchange', handleRoute);
+
+      const reelToggle = $('#reelToggle');
+      const reelWindow = $('#reelWindow');
+      if (reelToggle && reelWindow) {
+        reelToggle.addEventListener('click', () => {
+          const paused = reelWindow.toggleAttribute('data-paused');
+          reelToggle.setAttribute('aria-pressed', String(paused));
+          const icon = $('i', reelToggle);
+          const label = $('span', reelToggle);
+          if (icon) icon.textContent = paused ? '▶' : 'Ⅱ';
+          if (label) label.textContent = paused ? '继续流动' : '暂停流动';
+        });
+      }
+
+      $('#albumCoverBtn').addEventListener('click', () => {
+        if (state.activeAlbum) openLightbox(state.activeAlbum, 0);
+      });
+
+      $('#albumGrid').addEventListener('click', (event) => {
+        const button = event.target.closest('.album-photo');
+        if (!button || !state.activeAlbum) return;
+        const index = Number(button.dataset.index);
+        if (Number.isFinite(index)) openLightbox(state.activeAlbum, index);
+      });
+
+      const wechatButton = $('#contactWechat');
+      if (wechatButton && site.contact && site.contact.wechat) {
+        wechatButton.addEventListener('click', async () => {
+          const wechat = site.contact.wechat;
+          const copied = await copyText(wechat);
+          showToast(copied ? '微信号已复制' : '微信号：' + wechat);
+        });
+      }
+
+      $('#copyAlbumLink').addEventListener('click', async (event) => {
+        const button = event.currentTarget;
+        const copied = await copyText(location.href);
+        showToast(copied ? '链接已复制' : '复制失败，请手动复制地址栏链接');
+        if (copied) {
+          const label = $('span', button);
+          const original = label ? label.textContent : '';
+          if (label) label.textContent = '已复制';
+          window.setTimeout(() => { if (label) label.textContent = original; }, 1600);
+        }
+      });
+
+      const lightbox = $('#lightbox');
+      $('#lbClose').addEventListener('click', closeLightbox);
+      $('#lbPrev').addEventListener('click', () => stepLightbox(-1));
+      $('#lbNext').addEventListener('click', () => stepLightbox(1));
+      $('#lbStrip').addEventListener('click', (event) => {
+        const button = event.target.closest('button[data-index]');
+        if (!button || !state.lightbox) return;
+        state.lightbox.index = Number(button.dataset.index);
+        updateLightbox();
+      });
+      lightbox.addEventListener('click', (event) => {
+        if (event.target === lightbox) closeLightbox();
+      });
+      lightbox.addEventListener('close', () => {
+        document.body.classList.remove('lightbox-open');
+        if (state.lightboxTrigger && document.contains(state.lightboxTrigger)) {
+          state.lightboxTrigger.focus({ preventScroll: true });
+        }
+        state.lightbox = null;
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (lightbox.open) {
+          if (event.key === 'ArrowRight') { event.preventDefault(); stepLightbox(1); }
+          if (event.key === 'ArrowLeft') { event.preventDefault(); stepLightbox(-1); }
+          return;
+        }
+        if (event.key === 'Escape' && document.body.classList.contains('nav-open')) {
+          document.body.classList.remove('nav-open');
+          menuToggle.setAttribute('aria-expanded', 'false');
+          menuToggle.focus();
+        }
+      });
+
+      let swipeX = null;
+      $('#lbStage').addEventListener('pointerdown', (event) => { swipeX = event.clientX; });
+      $('#lbStage').addEventListener('pointerup', (event) => {
+        if (swipeX === null) return;
+        const distance = event.clientX - swipeX;
+        swipeX = null;
+        if (Math.abs(distance) > 45) stepLightbox(distance < 0 ? 1 : -1);
+      });
+
+      $('#albumGrid').addEventListener('load', () => {
+        if (state.activeAlbum) scheduleAlbumLayout(60);
+      }, true);
+
+      let resizeTimer = null;
+      window.addEventListener('resize', () => {
+        window.clearTimeout(resizeTimer);
+        resizeTimer = window.setTimeout(() => {
+          if (state.activeAlbum) layoutAlbumGrid();
+        }, 140);
+      }, { passive: true });
+
+      document.addEventListener('error', (event) => {
+        if (event.target && event.target.tagName === 'IMG') {
+          const container = event.target.closest('.media');
+          if (container) container.classList.add('is-broken');
+        }
+      }, true);
+    }
+
+    async function boot() {
+      document.documentElement.classList.add('js');
+      const year = new Date().getFullYear();
+      const footerYear = $('#footerYear');
+      const albumFooterYear = $('#albumFooterYear');
+      if (footerYear) footerYear.textContent = String(year);
+      if (albumFooterYear) albumFooterYear.textContent = String(year);
+
+      state.github = detectRepo();
+      bindEvents();
+      renderAll();
+
+      const localCollections = await loadLocalCollections();
+      if (!localCollections) await syncFromGitHub();
+      handleRoute();
+    }
+
+    boot();
+  })();
+  </script>
+</body>
+</html>
